@@ -1,0 +1,25 @@
+{
+    "name": "msbios/theme",
+    "description": "Zend Theme",
+    "license": "GPL",
+    "keywords": [
+        "php"
+    ],
+    "homepage": "https://cksource.com/ckfinder",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Judzhin Miles",
+            "email": "info@msbios.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "zendframework/zend-modulemanager": "^2.7@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "MSBios\\Theme\\": "src/"
+        }
+    }
+}
