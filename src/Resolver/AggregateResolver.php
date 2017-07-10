@@ -4,6 +4,7 @@
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
 namespace MSBios\Theme\Resolver;
+
 use Zend\Stdlib\PriorityQueue;
 
 /**
@@ -51,16 +52,14 @@ class AggregateResolver implements AggregateResolverInterface
                 $identifier = $detector->getIdentifier();
 
                 if (empty($identifier)) {
-
                     // No resource found; try next resolver
                     continue;
                 }
-                
+
                 // Resource found; return it
                 $this->lastStrategyFound = $detector;
                 return $identifier;
             }
-
         }
 
         return false;

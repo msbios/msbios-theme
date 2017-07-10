@@ -26,5 +26,4 @@ class NotFoundException extends Exception
     {
         parent::__construct($this->message, $code, $previous);
     }
-
 }

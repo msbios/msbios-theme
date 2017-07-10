@@ -44,33 +44,39 @@ class Manager implements ThemeManagerInterface
      */
     public function loadThemes()
     {
-
         /** @var array $themes */
-        $themes = $this->config->get('themes')->toArray();
+        $themes = $this->config->getThemes()->toArray();
 
-        /** @var \DirectoryIterator $item */
-        foreach (new \DirectoryIterator('./themes') as $item) {
-            if (! $item->isDot() && $item->isDir()) {
+        /** @var string $path */
+        foreach ($this->config->getGlobalPaths() as $path) {
+            if (! is_dir($path)) {
+                continue;
+            }
 
-                /** @var string $path */
-                foreach ($this->config->get('default_global_paths') as $path) {
+            /** @var \DirectoryIterator $item */
+            foreach (new \DirectoryIterator($path) as $item) {
+                if (! $item->isDot() && $item->isDir()) {
 
-                    /** @var string $filename */
-                    $filename = implode(DIRECTORY_SEPARATOR, [
-                        $path, $item->getFilename(), $this->config->get('default_config_filename')
-                    ]);
+                    /** @var string $path */
+                    foreach ($this->config->get('default_global_paths') as $path) {
 
-                    if (file_exists($filename)) {
+                        /** @var string $filename */
+                        $filename = implode(DIRECTORY_SEPARATOR, [
+                            $path, $item->getFilename(), $this->config->get('default_config_filename')
+                        ]);
 
-                        /** @var array $config */
-                        $config = require_once $filename;
+                        if (file_exists($filename)) {
 
-                        foreach ($themes as $key => $theme) {
-                            if ($theme['identifier'] == $config['identifier']) {
-                                $themes[$key] = ArrayUtils::merge($themes[$key], $config);
-                                continue;
-                            } else {
-                                $themes[$config['identifier']] = $config;
+                            /** @var array $config */
+                            $config = require_once $filename;
+
+                            foreach ($themes as $key => $theme) {
+                                if ($theme['identifier'] == $config['identifier']) {
+                                    $themes[$key] = ArrayUtils::merge($themes[$key], $config);
+                                    continue;
+                                } else {
+                                    $themes[$config['identifier']] = $config;
+                                }
                             }
                         }
                     }

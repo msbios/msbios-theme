@@ -47,7 +47,7 @@ class AggregateThemeResolverFactory implements FactoryInterface
             /** @var ResolverInterface $resolverService */
             $resolverService = $container->get($resolverName);
 
-            if (!$resolverService instanceof ResolverInterface) {
+            if (! $resolverService instanceof ResolverInterface) {
                 throw new RuntimeException;
             }
 
@@ -62,7 +62,6 @@ class AggregateThemeResolverFactory implements FactoryInterface
             }
 
             $resolver->attach($resolverService, $priority);
-
         }
 
         return $resolver;

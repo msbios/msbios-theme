@@ -25,5 +25,4 @@ class RuntimeException extends \RuntimeException
     {
         parent::__construct($this->message, $code, $previous);
     }
-
 }
