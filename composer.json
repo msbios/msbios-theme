@@ -1,25 +1,33 @@
 {
-    "name": "msbios/theme",
-    "description": "Zend Theme",
-    "license": "GPL",
-    "keywords": [
-        "php"
-    ],
-    "homepage": "https://cksource.com/ckfinder",
-    "minimum-stability": "dev",
-    "authors": [
-        {
-            "name": "Judzhin Miles",
-            "email": "info@msbios.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "zendframework/zend-modulemanager": "^2.7@dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "MSBios\\Theme\\": "src/"
-        }
+  "name": "msbios/theme",
+  "description": "Zend Theme",
+  "license": "GPL",
+  "keywords": [
+    "php"
+  ],
+  "homepage": "https://github.com/msbios/msbios-theme",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Judzhin Miles",
+      "email": "info@msbios.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MSBios\\Theme\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MSBiosTest\\Theme\\": "tests/"
+    }
+  },
+  "require": {
+    "msbios/msbios": "^0.0.1",
+    "zendframework/zend-loader": "^2.5"
+  },
+  "require-dev": {
+    "zendframework/zend-test": "^3.1"
+  }
 }

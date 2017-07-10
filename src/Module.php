@@ -13,6 +13,9 @@ use Zend\EventManager\SharedEventManager;
 use Zend\I18n\Exception\InvalidArgumentException;
 use Zend\I18n\Translator\Translator;
 use Zend\I18n\Translator\TranslatorInterface;
+use Zend\Loader\AutoloaderFactory;
+use Zend\Loader\StandardAutoloader;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\Application;
 use Zend\Mvc\ApplicationInterface;
@@ -24,7 +27,7 @@ use Zend\View\Model\ModelInterface;
  * Class Module
  * @package MSBios\Theme
  */
-class Module implements ModuleInterface, BootstrapListenerInterface
+class Module implements ModuleInterface, BootstrapListenerInterface, AutoloaderProviderInterface
 {
     const VERSION = '0.0.1';
 
@@ -165,5 +168,22 @@ class Module implements ModuleInterface, BootstrapListenerInterface
     public function prepareTranslator(MvcEvent $e)
     {
 
+    }
+
+    /**
+     * Return an array for passing to Zend\Loader\AutoloaderFactory.
+     *
+     * @return array
+     */
+    public function getAutoloaderConfig()
+    {
+
+        return [
+            AutoloaderFactory::STANDARD_AUTOLOADER => [
+                StandardAutoloader::LOAD_NS => [
+                    __NAMESPACE__ => __DIR__,
+                ],
+            ],
+        ];
     }
 }
