@@ -50,7 +50,7 @@ class Manager implements ThemeManagerInterface
 
         /** @var \DirectoryIterator $item */
         foreach (new \DirectoryIterator('./themes') as $item) {
-            if (!$item->isDot() && $item->isDir()) {
+            if (! $item->isDot() && $item->isDir()) {
 
                 /** @var string $path */
                 foreach ($this->config->get('default_global_paths') as $path) {
@@ -75,7 +75,6 @@ class Manager implements ThemeManagerInterface
                         }
                     }
                 }
-
             }
         }
 
@@ -138,7 +137,6 @@ class Manager implements ThemeManagerInterface
 
         /** @var Theme $object */
         foreach ($this->loadedThemes as $object) {
-
             if ($object->getIdentifier() == $identifier) {
                 return $object;
             }

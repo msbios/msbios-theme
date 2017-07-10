@@ -100,7 +100,6 @@ class Module implements ModuleInterface, BootstrapListenerInterface, AutoloaderP
 
                 /** @var array $pattern */
                 foreach ($templateTranslations as $pattern) {
-
                     if (is_null($translator)) {
                         /** @var Translator $translator */
                         $translator = $serviceManager->get(TranslatorInterface::class);
@@ -109,7 +108,7 @@ class Module implements ModuleInterface, BootstrapListenerInterface, AutoloaderP
                     /** @var array $requiredKeys */
                     $requiredKeys = ['type', 'base_dir', 'pattern'];
                     foreach ($requiredKeys as $key) {
-                        if (!isset($pattern[$key])) {
+                        if (! isset($pattern[$key])) {
                             throw new InvalidArgumentException(
                                 "'{$key}' is missing for translation pattern options"
                             );
@@ -136,7 +135,7 @@ class Module implements ModuleInterface, BootstrapListenerInterface, AutoloaderP
         /** @var RouteMatch $routeMatch */
         $routeMatch = $e->getRouteMatch();
 
-        if (!$routeMatch instanceof RouteMatchInterface) {
+        if (! $routeMatch instanceof RouteMatchInterface) {
             return;
         }
 
@@ -145,7 +144,7 @@ class Module implements ModuleInterface, BootstrapListenerInterface, AutoloaderP
 
             /** @var ModelInterface $viewModel */
             $viewModel = $e->getViewModel();
-            if (!$viewModel instanceof ModelInterface) {
+            if (! $viewModel instanceof ModelInterface) {
                 return;
             }
 
@@ -167,7 +166,6 @@ class Module implements ModuleInterface, BootstrapListenerInterface, AutoloaderP
      */
     public function prepareTranslator(MvcEvent $e)
     {
-
     }
 
     /**

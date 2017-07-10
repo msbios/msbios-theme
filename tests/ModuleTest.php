@@ -19,8 +19,6 @@ class ModuleTest extends TestCase
      */
     public function testGetAutoloaderConfig()
     {
-        $this->assertInternalType(
-            'array', (new Module())->getAutoloaderConfig()
-        );
+        $this->assertInternalType('array', (new Module())->getAutoloaderConfig());
     }
 }
