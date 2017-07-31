@@ -11,10 +11,10 @@ use MSBios\Theme\Module;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class ConfigFactory
+ * Class ModuleFactory
  * @package MSBios\Theme\Factory
  */
-class ConfigFactory implements FactoryInterface
+class ModuleFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container

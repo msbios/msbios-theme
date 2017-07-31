@@ -12,10 +12,10 @@ use MSBios\Theme\Resolver\ResolverInterface;
 use Zend\Stdlib\ArrayUtils;
 
 /**
- * Class Manager
+ * Class ThemeManager
  * @package MSBios\Theme
  */
-class Manager implements ThemeManagerInterface
+class ThemeManager implements ThemeManagerInterface
 {
     /** @var ResolverInterface */
     protected $themeResolver;

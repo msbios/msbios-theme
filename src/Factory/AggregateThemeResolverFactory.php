@@ -9,6 +9,7 @@ use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
 use MSBios\Theme\Config\Config;
 use MSBios\Theme\Exception\RuntimeException;
+use MSBios\Theme\Module;
 use MSBios\Theme\Resolver\AggregateThemeResolver;
 use MSBios\Theme\Resolver\ConfigAwareInterface;
 use MSBios\Theme\Resolver\MvcEventAwareInterface;
@@ -23,7 +24,6 @@ use Zend\ServiceManager\Factory\FactoryInterface;
  */
 class AggregateThemeResolverFactory implements FactoryInterface
 {
-
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
@@ -33,7 +33,7 @@ class AggregateThemeResolverFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var \Zend\Config\Config $config */
-        $config = $container->get(Config::class);
+        $config = $container->get(Module::class);
 
         /** @var AggregateThemeResolver $resolver */
         $resolver = new AggregateThemeResolver;

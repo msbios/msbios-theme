@@ -38,6 +38,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-escaper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-http" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-i18n" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-loader" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-modulemanager" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-mvc" />
@@ -90,6 +91,7 @@
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-escaper" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-http" />
+          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-i18n" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-loader" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-modulemanager" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-mvc" />
@@ -138,6 +140,7 @@
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-escaper" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-http" />
+          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-i18n" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-loader" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-modulemanager" />
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-mvc" />
