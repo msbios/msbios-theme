@@ -6,53 +6,55 @@
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
-use Interop\Container\Exception\ContainerException;
 use MSBios\Theme\Config\Config;
 use MSBios\Theme\Exception\RuntimeException;
 use MSBios\Theme\Module;
-use MSBios\Theme\Resolver\AggregateThemeResolver;
+use MSBios\Theme\Resolver\ThemeAggregateResolver;
 use MSBios\Theme\Resolver\ConfigAwareInterface;
 use MSBios\Theme\Resolver\MvcEventAwareInterface;
 use MSBios\Theme\Resolver\ResolverInterface;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class AggregateThemeResolverFactory
+ * Class ThemeAggregateResolverFactory
  * @package MSBios\Theme\Factory
  */
-class AggregateThemeResolverFactory implements FactoryInterface
+class ThemeAggregateResolverFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return AggregateThemeResolver
+     * @return ThemeAggregateResolver
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var \Zend\Config\Config $config */
+        /** @var Config $config */
         $config = $container->get(Module::class);
 
-        /** @var AggregateThemeResolver $resolver */
-        $resolver = new AggregateThemeResolver;
+        /** @var ThemeAggregateResolver $resolver */
+        $resolver = new ThemeAggregateResolver;
 
         /**
          * @var string $resolverName
          * @var int $priority
          */
-        foreach ($config->get('resolvers_configuration_themes') as $resolverName => $priority) {
+        foreach ($config->getResolversConfigurationThemes() as $resolverName => $priority) {
 
-            /** @var ResolverInterface $resolverService */
-            $resolverService = $container->get($resolverName);
+            if ($container->has($resolverName)) {
+                /** @var ResolverInterface $resolverService */
+                $resolverService = $container->get($resolverName);
+            } else {
+                /** @var ResolverInterface $resolverService */
+                $resolverService = new $resolverName($container);
+            }
 
             if (! $resolverService instanceof ResolverInterface) {
                 throw new RuntimeException;
             }
 
             if ($resolverService instanceof ConfigAwareInterface) {
-                $resolverService->setConfig($config->toArray());
+                $resolverService->setConfig($config);
             }
 
             if ($resolverService instanceof MvcEventAwareInterface) {

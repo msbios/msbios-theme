@@ -6,10 +6,10 @@
 namespace MSBios\Theme\Resolver;
 
 /**
- * Class AggregateThemeResolver
+ * Class ThemeAggregateResolver
  * @package MSBios\Theme\Resolver
  */
-class AggregateThemeResolver extends AggregateResolver
+class ThemeAggregateResolver extends AggregateResolver
 {
 
 }

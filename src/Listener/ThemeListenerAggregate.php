@@ -14,10 +14,10 @@ use Zend\I18n\Translator\Translator;
 use Zend\I18n\Translator\TranslatorInterface;
 
 /**
- * Class ThemeListener
+ * Class ThemeListenerAggregate
  * @package MSBios\Theme\Listener
  */
-class ThemeListener extends AbstractListenerAggregate
+class ThemeListenerAggregate extends AbstractListenerAggregate
 {
     /**
      * @param EventInterface $event
@@ -27,8 +27,8 @@ class ThemeListener extends AbstractListenerAggregate
         /** @var ThemeManager $themeManager */
         $themeManager = $this->serviceManager->get(ThemeManager::class);
 
-        /** @var Theme $themeObject */
-        if (!$themeObject = $themeManager->current()) {
+        /** @var Theme $theme */
+        if (!$theme = $themeManager->current()) {
             return;
         }
 
@@ -37,7 +37,7 @@ class ThemeListener extends AbstractListenerAggregate
          * This way if there is template in our theme it will be taken and used
          * Otherwise we will use the ones provided earlier from the application
          */
-        if ($templatePathStack = $themeObject->getTemplatePathStack()) {
+        if ($templatePathStack = $theme->getTemplatePathStack()) {
             $stack = $this->serviceManager->get('ViewTemplatePathStack');
             $stack->addPaths($templatePathStack);
         }
@@ -46,13 +46,13 @@ class ThemeListener extends AbstractListenerAggregate
          * We override the template resolver
          * Here we add the changes that need to be applied to the existing template map
          */
-        if ($templateMap = $themeObject->getTemplateMap()) {
+        if ($templateMap = $theme->getTemplateMap()) {
             $map = $this->serviceManager->get('ViewTemplateMapResolver');
             $map->merge($templateMap);
         }
 
         /** @var array $templateTranslations */
-        if ($templateTranslations = $themeObject->getTranslationFilePatterns()) {
+        if ($templateTranslations = $theme->getTranslationFilePatterns()) {
 
             /** @var null $translator */
             $translator = null;

@@ -14,6 +14,15 @@ use Zend\Config\Config as DefaultConfig;
  */
 class Config extends DefaultConfig
 {
+
+    /**
+     * @return mixed
+     */
+    public function getResolversConfigurationThemes()
+    {
+        return $this->get('resolvers_configuration_themes');
+    }
+
     /**
      * @return mixed
      */

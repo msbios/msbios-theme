@@ -11,10 +11,10 @@ use Zend\Router\RouteMatch;
 use Zend\View\Model\ModelInterface;
 
 /**
- * Class LayoutListener
+ * Class LayoutListenerAggregate
  * @package MSBios\Theme\Listener
  */
-class LayoutListener extends AbstractListenerAggregate
+class LayoutListenerAggregate extends AbstractListenerAggregate
 {
     /** @const IDENTIFIER */
     const IDENTIFIER = 'layout_identifier';

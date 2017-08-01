@@ -5,20 +5,22 @@
  */
 namespace MSBios\Theme\Resolver;
 
+use MSBios\Theme\Config\Config;
+
 /**
  * Class ConfigResolver
  * @package MSBios\Theme\Resolver
  */
 class ConfigResolver implements ConfigAwareInterface, ResolverInterface
 {
-    /** @var null */
-    protected $config = null;
+    /** @var Config */
+    protected $config;
 
     /**
-     * @param array $config
+     * @param Config $config
      * @return $this
      */
-    public function setConfig(array $config)
+    public function setConfig(Config $config)
     {
         $this->config = $config;
         return $this;
@@ -29,6 +31,6 @@ class ConfigResolver implements ConfigAwareInterface, ResolverInterface
      */
     public function getIdentifier()
     {
-        return false;
+        return $this->config->getDefaultThemeIdentifier();
     }
 }

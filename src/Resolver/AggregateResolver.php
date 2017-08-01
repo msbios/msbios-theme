@@ -43,6 +43,7 @@ class AggregateResolver implements AggregateResolverInterface
      */
     public function getIdentifier()
     {
+
         if (count($this->queue)) {
 
             /** @var ResolverInterface $detector */

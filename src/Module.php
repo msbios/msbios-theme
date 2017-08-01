@@ -52,15 +52,13 @@ class Module implements
 
             if ($serviceManager->has($listener)) {
                 $serviceManager->get($listener)
-                    ->attach(
-                        $target->getEventManager(), 100500
-                    );
+                    ->attach($target->getEventManager(), 100500);
                 continue;
+            } else {
+                (new $listener($serviceManager))->attach(
+                    $target->getEventManager(), 100500
+                );
             }
-
-            (new $listener($serviceManager))->attach(
-                $target->getEventManager(), 100500
-            );
         }
     }
 

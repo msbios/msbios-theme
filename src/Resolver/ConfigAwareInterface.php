@@ -5,6 +5,8 @@
  */
 namespace MSBios\Theme\Resolver;
 
+use MSBios\Theme\Config\Config;
+
 /**
  * Interface ConfigAwareInterface
  * @package MSBios\Theme\Resolver
@@ -12,8 +14,8 @@ namespace MSBios\Theme\Resolver;
 interface ConfigAwareInterface
 {
     /**
-     * @param array $config
+     * @param Config $config
      * @return mixed
      */
-    public function setConfig(array $config);
+    public function setConfig(Config $config);
 }

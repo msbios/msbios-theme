@@ -6,7 +6,7 @@
 namespace MSBios\Theme;
 
 use MSBios\Stdlib\Object;
-use MSBios\Theme\Config\Config;
+use Zend\Config\Config;
 
 /**
  * Class Theme

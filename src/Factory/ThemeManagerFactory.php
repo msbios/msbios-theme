@@ -7,7 +7,7 @@ namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
 use MSBios\Theme\Module;
-use MSBios\Theme\Resolver\AggregateThemeResolver;
+use MSBios\Theme\Resolver\ThemeAggregateResolver;
 use MSBios\Theme\ThemeManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
@@ -26,7 +26,7 @@ class ThemeManagerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return new ThemeManager(
-            $container->get(AggregateThemeResolver::class),
+            $container->get(ThemeAggregateResolver::class),
             $container->get(Module::class)
         );
     }

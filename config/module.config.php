@@ -12,23 +12,31 @@ return [
         'factories' => [
             Module::class => Factory\ModuleFactory::class,
             ThemeManager::class => Factory\ThemeManagerFactory::class,
-            Resolver\AggregateThemeResolver::class => Factory\AggregateThemeResolverFactory::class
+            Resolver\ThemeAggregateResolver::class => Factory\ThemeAggregateResolverFactory::class
         ],
     ],
     Module::class => [
+
         // default theme name if not set
         'default_theme_identifier' => 'default', // used by Theme\Resolvers\Config
+
         // default layout name
         'default_layout_identifier' => 'layout/default',
+
         // default global path form themes
         'default_global_paths' => [
             './themes'
         ],
+
+        // default config filename in theme folder
         'default_config_filename' => 'theme.config.php',
+
         // theme resolvers
         'resolvers_configuration_themes' => [
-            Resolver\ConfigResolver::class => -1000
+            Resolver\ConfigResolver::class => -1000,
+            Resolver\RouteResolver::class => -800,
         ],
+
         // layout resolvers
         'resolvers_configuration_layouts' => [
             // Mvc\Theme\Resolver\Layout\DynamicLayoutResolver::class => -1000,
@@ -36,8 +44,8 @@ return [
         ],
 
         'listeners' => [
-            Listener\LayoutListener::class,
-            Listener\ThemeListener::class,
+            Listener\LayoutListenerAggregate::class,
+            Listener\ThemeListenerAggregate::class,
         ],
 
         'themes' => [
