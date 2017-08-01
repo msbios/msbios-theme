@@ -34,6 +34,12 @@ return [
             // Mvc\Theme\Resolver\Layout\DynamicLayoutResolver::class => -1000,
             // Mvc\Theme\Resolver\Layout\ConfigLayoutResolver::class => -10000
         ],
+
+        'listeners' => [
+            Listener\LayoutListener::class,
+            Listener\ThemeListener::class,
+        ],
+
         'themes' => [
             'default' => [
                 'identifier' => 'default',
