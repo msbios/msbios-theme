@@ -53,114 +53,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="PHP" type="php">
+      <library name="PHP Runtime" type="php">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
-          <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
-          <root url="file://$MODULE_DIR$/vendor/msbios/msbios" />
-          <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
-          <root url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-file-iterator" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
-          <root url="file://$MODULE_DIR$/vendor/psr/container" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/diff" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/environment" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/exporter" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/global-state" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/object-enumerator" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
-          <root url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
-          <root url="file://$MODULE_DIR$/vendor/webmozart/assert" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-config" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-console" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-dom" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-escaper" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-http" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-i18n" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-loader" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-modulemanager" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-mvc" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-router" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-servicemanager" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-stdlib" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-test" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-uri" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-validator" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-view" />
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
-          <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
-          <root url="file://$MODULE_DIR$/vendor/msbios/msbios" />
-          <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
-          <root url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-file-iterator" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
-          <root url="file://$MODULE_DIR$/vendor/psr/container" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/diff" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/environment" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/exporter" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/global-state" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/object-enumerator" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
-          <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
-          <root url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
-          <root url="file://$MODULE_DIR$/vendor/webmozart/assert" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-config" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-console" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-dom" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-escaper" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-http" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-i18n" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-loader" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-modulemanager" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-mvc" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-router" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-servicemanager" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-stdlib" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-test" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-uri" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-validator" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-view" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="PHARS">
-        <CLASSES>
-          <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-1.0.0.phar/" />
-        </CLASSES>
-        <SOURCES>
-          <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-1.0.0.phar/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
         </SOURCES>
       </library>
     </orderEntry>
