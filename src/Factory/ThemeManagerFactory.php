@@ -6,22 +6,20 @@
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Theme\Config\Config;
 use MSBios\Theme\Module;
 use MSBios\Theme\Resolver\AggregateThemeResolver;
 use MSBios\Theme\ThemeManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class ManagerFactory
+ * Class ThemeManagerFactory
  * @package MSBios\Theme\Factory
  */
-class ManagerFactory implements FactoryInterface
+class ThemeManagerFactory implements FactoryInterface
 {
-
     /**
      * @param ContainerInterface $container
-     * @param string $requestedName
+     * @param $requestedName
      * @param array|null $options
      * @return ThemeManager
      */

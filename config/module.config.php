@@ -10,8 +10,8 @@ return [
             Resolver\ConfigResolver::class => Resolver\ConfigResolver::class
         ],
         'factories' => [
-            Config\Config::class => Factory\ConfigFactory::class,
-            Manager::class => Factory\ManagerFactory::class,
+            Module::class => Factory\ModuleFactory::class,
+            ThemeManager::class => Factory\ThemeManagerFactory::class,
             Resolver\AggregateThemeResolver::class => Factory\AggregateThemeResolverFactory::class
         ],
     ],

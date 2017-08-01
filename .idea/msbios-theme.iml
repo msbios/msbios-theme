@@ -2,7 +2,6 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/msbios" />
@@ -32,23 +31,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-config" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-console" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-dom" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-escaper" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-http" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-i18n" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-loader" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-modulemanager" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-mvc" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-router" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-servicemanager" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-stdlib" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-test" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-uri" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-validator" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-view" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
