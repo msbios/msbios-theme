@@ -8,10 +8,10 @@ namespace MSBios\Theme\Resolver;
 use Zend\Stdlib\PriorityQueue;
 
 /**
- * Class AggregateResolver
+ * Class AggregateResolverManager
  * @package MSBios\Theme\Resolver
  */
-class AggregateResolver implements AggregateResolverInterface
+class AggregateResolverManager implements AggregateResolverInterface
 {
     /** @var PriorityQueue|ResolverInterface[] */
     protected $queue;

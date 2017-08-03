@@ -5,17 +5,17 @@
  */
 namespace MSBios\Theme\Resolver;
 
-use MSBios\Theme\Config\Config;
+use Zend\Config\Config;
 
 /**
- * Interface ConfigAwareInterface
+ * Interface OptionsAwareInterface
  * @package MSBios\Theme\Resolver
  */
-interface ConfigAwareInterface
+interface OptionsAwareInterface
 {
     /**
      * @param Config $config
      * @return mixed
      */
-    public function setConfig(Config $config);
+    public function setOptions(Config $config);
 }

@@ -6,8 +6,8 @@
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Theme\Config\Config;
 use MSBios\Theme\Module;
+use Zend\Config\Config;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**

@@ -4,15 +4,23 @@
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
 namespace MSBios\Theme;
+
 return [
     'service_manager' => [
         'invokables' => [
-            Resolver\ConfigResolver::class => Resolver\ConfigResolver::class
+            // Resolvers
+            Resolver\ConfigResolver::class => Resolver\ConfigResolver::class,
+            Resolver\RouteResolver::class => Resolver\RouteResolver::class
         ],
         'factories' => [
             Module::class => Factory\ModuleFactory::class,
             ThemeManager::class => Factory\ThemeManagerFactory::class,
-            Resolver\ThemeAggregateResolver::class => Factory\ThemeAggregateResolverFactory::class
+
+
+            ResolverManagerInterface::class => Factory\ResolverManagerFactory::class,
+
+            // Listeners
+            Listener\ThemeListener::class => Factory\ThemeListenerFactory::class
         ],
     ],
     Module::class => [
@@ -44,8 +52,8 @@ return [
         ],
 
         'listeners' => [
-            Listener\LayoutListenerAggregate::class,
-            Listener\ThemeListenerAggregate::class,
+            // Listener\LayoutListenerAggregate::class,
+            Listener\ThemeListener::class,
         ],
 
         'themes' => [

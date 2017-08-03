@@ -6,7 +6,9 @@
 namespace MSBios\Theme;
 
 use MSBios\ModuleInterface;
+use Zend\Config\Config;
 use Zend\EventManager\EventInterface;
+use Zend\EventManager\EventManager;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -45,28 +47,16 @@ class Module implements
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $target->getServiceManager();
 
+        /** @var EventManager $eventManager */
+        $eventManager = $target->getEventManager();
+
         /** @var Config $options */
         $options = $serviceManager->get(self::class);
 
         foreach ($options->get('listeners') as $listener) {
-
-            if ($serviceManager->has($listener)) {
-                $serviceManager->get($listener)
-                    ->attach($target->getEventManager(), 100500);
-                continue;
-            } else {
-                (new $listener($serviceManager))->attach(
-                    $target->getEventManager(), 100500
-                );
-            }
+            $serviceManager->get($listener)
+                ->attach($target->getEventManager());
         }
-    }
-
-    /**
-     * @param MvcEvent $e
-     */
-    public function prepareTranslator(MvcEvent $e)
-    {
     }
 
     /**
