@@ -3,15 +3,17 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
-namespace MSBios\Theme\Resolver;
+namespace MSBios\Theme;
 
+use MSBios\Theme\Resolver\AggregateResolverInterface;
+use MSBios\Theme\Resolver\ResolverInterface;
 use Zend\Stdlib\PriorityQueue;
 
 /**
- * Class AggregateResolverManager
- * @package MSBios\Theme\Resolver
+ * Class ResolverManager
+ * @package MSBios\Theme
  */
-class AggregateResolverManager implements AggregateResolverInterface
+class ResolverManager implements AggregateResolverInterface
 {
     /** @var PriorityQueue|ResolverInterface[] */
     protected $queue;

@@ -12,7 +12,6 @@ use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\I18n\Exception\InvalidArgumentException;
-use Zend\I18n\Translator\Translator;
 use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Resolver\TemplateMapResolver;

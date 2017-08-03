@@ -7,10 +7,10 @@ namespace MSBios\Theme\Resolver;
 use Zend\Config\Config;
 
 /**
- * Class ConfigResolver
+ * Class DefaultThemeIdentifierResolver
  * @package MSBios\Theme\Resolver
  */
-class ConfigResolver implements OptionsAwareInterface, ResolverInterface
+class DefaultThemeIdentifierResolver implements OptionsAwareInterface, ResolverInterface
 {
     /** @var Config */
     protected $options;

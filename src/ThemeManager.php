@@ -27,6 +27,9 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     /** @var \Zend\Config\Config */
     protected $themes = [];
 
+    /** @var Theme */
+    protected $current;
+
     /**
      * ThemeManager constructor.
      * @param AggregateResolverInterface $resolver
@@ -120,6 +123,30 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @param $identityOrInstance
+     * @return bool
+     */
+    public function removeTheme($identityOrInstance) {
+
+        if(!$this->hasTheme($identityOrInstance)) {
+            return false;
+        }
+
+        if(is_string($identityOrInstance)) {
+            $identityOrInstance = $this->getTheme($identityOrInstance);
+        }
+
+        /** @var int $index */
+        $index = array_search($identityOrInstance, $this->themes);
+        if($index !== false) {
+            array_splice($this->themes, $index, 1);
+            return true;
+        }
+
+        return false;
     }
 
     /**

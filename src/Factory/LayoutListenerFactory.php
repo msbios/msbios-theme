@@ -6,28 +6,23 @@
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Theme\Module;
-use MSBios\Theme\ResolverManager;
-use MSBios\Theme\ThemeManager;
+use MSBios\Theme\Listener\LayoutListener;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class ThemeManagerFactory
+ * Class LayoutListenerFactory
  * @package MSBios\Theme\Factory
  */
-class ThemeManagerFactory implements FactoryInterface
+class LayoutListenerFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return ThemeManager
+     * @return LayoutListener
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new ThemeManager(
-            $container->get(ResolverManager::class),
-            $container->get(Module::class)
-        );
+        return new LayoutListener;
     }
 }

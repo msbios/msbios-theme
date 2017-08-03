@@ -9,10 +9,10 @@ use Zend\Mvc\MvcEvent;
 use Zend\Router\RouteMatch;
 
 /**
- * Class RouteResolver
+ * Class RouteLayoutIdentifierResolver
  * @package MSBios\Theme\Resolver
  */
-class RouteResolver implements MvcEventAwareInterface, ResolverInterface
+class RouteLayoutIdentifierResolver implements MvcEventAwareInterface, ResolverInterface
 {
     /** @var MvcEvent */
     protected $event;
@@ -35,7 +35,7 @@ class RouteResolver implements MvcEventAwareInterface, ResolverInterface
             ->getRouteMatch();
 
         if ($routeMatch instanceof RouteMatch) {
-            return $routeMatch->getParam('theme_identifier');
+            return $routeMatch->getParam('layout_identifier');
         }
 
         return false;

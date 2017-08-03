@@ -8,10 +8,10 @@ namespace MSBios\Theme\Factory;
 use Interop\Container\ContainerInterface;
 use MSBios\Theme\Exception\RuntimeException;
 use MSBios\Theme\Module;
-use MSBios\Theme\Resolver\AggregateResolverManager;
 use MSBios\Theme\Resolver\OptionsAwareInterface;
 use MSBios\Theme\Resolver\MvcEventAwareInterface;
 use MSBios\Theme\Resolver\ResolverInterface;
+use MSBios\Theme\ResolverManager;
 use MSBios\Theme\ResolverManagerInterface;
 use Zend\Config\Config;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -26,15 +26,15 @@ class ResolverManagerFactory implements FactoryInterface
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return AggregateResolverManager|ResolverManagerInterface
+     * @return ResolverManager|ResolverManagerInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var Config $options */
         $options = $container->get(Module::class);
 
-        /** @var ResolverManagerInterface $aggregateResolver */
-        $aggregateResolver = new AggregateResolverManager;
+        /** @var ResolverManagerInterface $resolverManager */
+        $resolverManager = new ResolverManager;
 
         /**
          * @var string $resolverName
@@ -59,9 +59,9 @@ class ResolverManagerFactory implements FactoryInterface
                 );
             }
 
-            $aggregateResolver->attach($resolver, $priority);
+            $resolverManager->attach($resolver, $priority);
         }
 
-        return $aggregateResolver;
+        return $resolverManager;
     }
 }
