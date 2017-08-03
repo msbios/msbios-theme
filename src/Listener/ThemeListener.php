@@ -24,15 +24,14 @@ use Zend\View\Resolver\TemplatePathStack;
  */
 class ThemeListener extends AbstractListenerAggregate
 {
-
     /** @var ThemeManager */
     protected $themeManager;
 
-    /** @var ThemeManager */
-    protected $templatePathStack;
+    /** @var TemplatePathStack */
+    protected $pathStack;
 
     /** @var TemplateMapResolver */
-    protected $templateMapResolver;
+    protected $mapResolver;
 
     /** @var TranslatorInterface */
     protected $translator;
@@ -51,8 +50,8 @@ class ThemeListener extends AbstractListenerAggregate
         TranslatorInterface $translator)
     {
         $this->themeManager = $themeManager;
-        $this->templatePathStack = $templatePathStack;
-        $this->templateMapResolver = $templateMapResolver;
+        $this->pathStack = $templatePathStack;
+        $this->mapResolver = $templateMapResolver;
         $this->translator = $translator;
     }
 
@@ -86,7 +85,7 @@ class ThemeListener extends AbstractListenerAggregate
          * Otherwise we will use the ones provided earlier from the application
          */
         if ($templatePathStack = $theme->getTemplatePathStack()) {
-            $this->templatePathStack->addPaths($templatePathStack);
+            $this->pathStack->addPaths($templatePathStack);
         }
 
         /**
@@ -94,7 +93,7 @@ class ThemeListener extends AbstractListenerAggregate
          * Here we add the changes that need to be applied to the existing template map
          */
         if ($templateMap = $theme->getTemplateMap()) {
-            $this->templateMapResolver->merge($templateMap);
+            $this->mapResolver->merge($templateMap);
         }
 
         /** @var array $templateTranslations */
