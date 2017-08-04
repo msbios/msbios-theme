@@ -6,10 +6,8 @@
 
 namespace MSBios\Theme\Listener;
 
-use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Application;
 use Zend\Router\RouteMatch;
 use Zend\View\Model\ModelInterface;
 
@@ -17,45 +15,40 @@ use Zend\View\Model\ModelInterface;
  * Class LayoutListener
  * @package MSBios\Theme\Listener
  */
-class LayoutListener extends AbstractListenerAggregate
+class LayoutListener
 {
     /** @const IDENTIFIER */
     const IDENTIFIER = 'layout_identifier';
-
-    /**
-     * @param EventManagerInterface $events
-     * @param int $priority
-     */
-    public function attach(EventManagerInterface $events, $priority = -100900)
-    {
-        /** @var array $listener */
-        $listener = [$this, 'onRender'];
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, $listener, $priority);
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, $listener, $priority);
-    }
 
     /**
      * @param EventInterface $event
      */
     public function onRender(EventInterface $event)
     {
-        /** @var RouteMatch $routeMatch */
-        $routeMatch = $event->getRouteMatch();
+        /** @var string $error */
+        $error = $event->getError();
 
-        if (! $routeMatch instanceof RouteMatch) {
-            return;
-        }
+        if (empty($error) || Application::ERROR_EXCEPTION == $error) {
+            /** @var RouteMatch $routeMatch */
+            $routeMatch = $event->getRouteMatch();
 
-        /** @var string $identifier */
-        if ($identifier = $routeMatch->getParam(self::IDENTIFIER)) {
-
-            /** @var ModelInterface $viewModel */
-            $viewModel = $event->getViewModel();
-            if (! $viewModel instanceof ModelInterface) {
+            if (!$routeMatch instanceof RouteMatch) {
                 return;
             }
 
-            $viewModel->setTemplate("layout/{$identifier}");
+            /** @var string $identifier */
+            if ($identifier = $routeMatch->getParam(self::IDENTIFIER)) {
+
+                /** @var ModelInterface $viewModel */
+                $viewModel = $event->getViewModel();
+                if (! $viewModel instanceof ModelInterface) {
+                    return;
+                }
+
+                $viewModel->setTemplate("layout/{$identifier}");
+            }
         }
+
+
     }
 }

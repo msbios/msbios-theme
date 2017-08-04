@@ -3,6 +3,7 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Theme;
 
 return [
@@ -10,25 +11,30 @@ return [
         'invokables' => [
 
             // Resolvers
-            Resolver\DefaultThemeIdentifierResolver::class => Resolver\DefaultThemeIdentifierResolver::class,
-            Resolver\RouteThemeIdentifierResolver::class => Resolver\RouteThemeIdentifierResolver::class
+            Resolver\DefaultThemeIdentifierResolver::class =>
+                Resolver\DefaultThemeIdentifierResolver::class,
+
+            Resolver\RouteThemeIdentifierResolver::class =>
+                Resolver\RouteThemeIdentifierResolver::class,
+
+            // listeners
+            Listener\ThemeListener::class =>
+                Listener\ThemeListener::class,
+            Listener\LayoutListener::class =>
+                Listener\LayoutListener::class,
         ],
         'factories' => [
             Module::class => Factory\ModuleFactory::class,
 
             // Managers
             ResolverManager::class => Factory\ResolverManagerFactory::class,
-            ThemeManager::class => Factory\ThemeManagerFactory::class,
-
-            // Listeners
-            Listener\LayoutListener::class => Factory\LayoutListenerFactory::class,
-            Listener\ThemeListener::class => Factory\ThemeListenerFactory::class,
+            ThemeManager::class => Factory\ThemeManagerFactory::class
         ],
     ],
     Module::class => [
 
         // default theme name if not set
-        'default_theme_identifier' => 'default', // used by Theme\Resolvers\Config
+        'default_theme_identifier' => 'default',
 
         // default layout name
         'default_layout_identifier' => 'layout/default',
@@ -49,14 +55,31 @@ return [
 
         // layout resolvers
         'resolvers_configuration_layouts' => [
-            Resolver\RouteLayoutIdentifierResolver::class => -100500
-            // Mvc\Theme\Resolver\Layout\DynamicLayoutResolver::class => -1000,
-            // Mvc\Theme\Resolver\Layout\ConfigLayoutResolver::class => -10000
+            Resolver\RouteLayoutIdentifierResolver::class => -100700
         ],
 
         'listeners' => [
-            Listener\ThemeListener::class,
-            Listener\LayoutListener::class,
+            [
+                'listener' => Listener\ThemeListener::class,
+                'method' => 'onRender',
+                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER,
+                'priority' => 1,
+            ], [
+                'listener' => Listener\ThemeListener::class,
+                'method' => 'onRender',
+                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
+                'priority' => 1,
+            ], [
+                'listener' => Listener\LayoutListener::class,
+                'method' => 'onRender',
+                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER,
+                'priority' => 1,
+            ], [
+                'listener' => Listener\LayoutListener::class,
+                'method' => 'onRender',
+                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
+                'priority' => 1,
+            ]
         ],
 
         'themes' => [

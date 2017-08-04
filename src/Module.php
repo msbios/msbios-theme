@@ -9,6 +9,7 @@ use MSBios\ModuleInterface;
 use Zend\Config\Config;
 use Zend\EventManager\EventInterface;
 use Zend\EventManager\EventManager;
+use Zend\EventManager\LazyListenerAggregate;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -47,13 +48,22 @@ class Module implements
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $target->getServiceManager();
 
-        /** @var Config $options */
-        $options = $serviceManager->get(self::class);
+        // /** @var Config $options */
+        // $options = $serviceManager->get(self::class);
 
-        foreach ($options->get('listeners') as $listener) {
-            $serviceManager->get($listener)
-                ->attach($target->getEventManager());
-        }
+        ///**
+        // * @var string $listener
+        // * @var mixed $priority
+        // */
+        //foreach ($options->get('listeners') as $listener => $priority) {
+        //    $serviceManager->get($listener)
+        //        ->attach($target->getEventManager());
+        //}
+
+        (new LazyListenerAggregate(
+            $serviceManager->get(self::class)->get('listeners')->toArray(),
+            $serviceManager
+        ))->attach($target->getEventManager());
     }
 
     /**
@@ -63,7 +73,6 @@ class Module implements
      */
     public function getAutoloaderConfig()
     {
-
         return [
             AutoloaderFactory::STANDARD_AUTOLOADER => [
                 StandardAutoloader::LOAD_NS => [
