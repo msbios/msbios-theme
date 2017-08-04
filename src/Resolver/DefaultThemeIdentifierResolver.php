@@ -4,25 +4,24 @@
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
 namespace MSBios\Theme\Resolver;
-
-use MSBios\Theme\Config\Config;
+use Zend\Config\Config;
 
 /**
- * Class ConfigResolver
+ * Class DefaultThemeIdentifierResolver
  * @package MSBios\Theme\Resolver
  */
-class ConfigResolver implements ConfigAwareInterface, ResolverInterface
+class DefaultThemeIdentifierResolver implements OptionsAwareInterface, ResolverInterface
 {
     /** @var Config */
-    protected $config;
+    protected $options;
 
     /**
      * @param Config $config
      * @return $this
      */
-    public function setConfig(Config $config)
+    public function setOptions(Config $config)
     {
-        $this->config = $config;
+        $this->options = $config;
         return $this;
     }
 
@@ -31,6 +30,6 @@ class ConfigResolver implements ConfigAwareInterface, ResolverInterface
      */
     public function getIdentifier()
     {
-        return $this->config->getDefaultThemeIdentifier();
+        return $this->options->get('default_theme_identifier');
     }
 }

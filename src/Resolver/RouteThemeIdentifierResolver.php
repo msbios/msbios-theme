@@ -9,10 +9,10 @@ use Zend\Mvc\MvcEvent;
 use Zend\Router\RouteMatch;
 
 /**
- * Class RouteResolver
+ * Class RouteThemeIdentifierResolver
  * @package MSBios\Theme\Resolver
  */
-class RouteResolver implements MvcEventAwareInterface, ResolverInterface
+class RouteThemeIdentifierResolver implements MvcEventAwareInterface, ResolverInterface
 {
     /** @var MvcEvent */
     protected $event;

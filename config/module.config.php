@@ -8,12 +8,21 @@ namespace MSBios\Theme;
 return [
     'service_manager' => [
         'invokables' => [
-            Resolver\ConfigResolver::class => Resolver\ConfigResolver::class
+
+            // Resolvers
+            Resolver\DefaultThemeIdentifierResolver::class => Resolver\DefaultThemeIdentifierResolver::class,
+            Resolver\RouteThemeIdentifierResolver::class => Resolver\RouteThemeIdentifierResolver::class
         ],
         'factories' => [
             Module::class => Factory\ModuleFactory::class,
+
+            // Managers
+            ResolverManager::class => Factory\ResolverManagerFactory::class,
             ThemeManager::class => Factory\ThemeManagerFactory::class,
-            Resolver\ThemeAggregateResolver::class => Factory\ThemeAggregateResolverFactory::class
+
+            // Listeners
+            Listener\LayoutListener::class => Factory\LayoutListenerFactory::class,
+            Listener\ThemeListener::class => Factory\ThemeListenerFactory::class,
         ],
     ],
     Module::class => [
@@ -34,19 +43,20 @@ return [
 
         // theme resolvers
         'resolvers_configuration_themes' => [
-            Resolver\ConfigResolver::class => -1000,
-            Resolver\RouteResolver::class => -800,
+            Resolver\DefaultThemeIdentifierResolver::class => -100700,
+            Resolver\RouteThemeIdentifierResolver::class => -100500,
         ],
 
         // layout resolvers
         'resolvers_configuration_layouts' => [
+            Resolver\RouteLayoutIdentifierResolver::class => -100500
             // Mvc\Theme\Resolver\Layout\DynamicLayoutResolver::class => -1000,
             // Mvc\Theme\Resolver\Layout\ConfigLayoutResolver::class => -10000
         ],
 
         'listeners' => [
-            Listener\LayoutListenerAggregate::class,
-            Listener\ThemeListenerAggregate::class,
+            Listener\ThemeListener::class,
+            Listener\LayoutListener::class,
         ],
 
         'themes' => [
