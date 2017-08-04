@@ -47,28 +47,12 @@ class Module implements
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $target->getServiceManager();
 
-        /** @var EventManager $eventManager */
-        $eventManager = $target->getEventManager();
-
         /** @var Config $options */
         $options = $serviceManager->get(self::class);
 
         foreach ($options->get('listeners') as $listener) {
-<<<<<<< HEAD
-            if ($serviceManager->has($listener)) {
-                $serviceManager->get($listener)
-                    ->attach($target->getEventManager(), 100500);
-                continue;
-            } else {
-                (new $listener($serviceManager))->attach(
-                    $target->getEventManager(),
-                    100500
-                );
-            }
-=======
             $serviceManager->get($listener)
                 ->attach($target->getEventManager());
->>>>>>> 38e56064bc5259188b2869930b57d214f425a413
         }
     }
 

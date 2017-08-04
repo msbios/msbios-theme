@@ -46,8 +46,9 @@ class ThemeListener extends AbstractListenerAggregate
         ThemeManager $themeManager,
         TemplatePathStack $templatePathStack,
         TemplateMapResolver $templateMapResolver,
-        TranslatorInterface $translator)
-    {
+        TranslatorInterface $translator
+    ) {
+
         $this->themeManager = $themeManager;
         $this->pathStack = $templatePathStack;
         $this->mapResolver = $templateMapResolver;
@@ -62,8 +63,6 @@ class ThemeListener extends AbstractListenerAggregate
     {
         /** @var array $listener */
         $listener = [$this, 'onRender'];
-        // $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, $listener, $priority);
-        // $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, $listener, $priority);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, $listener, $priority);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, $listener, $priority);
     }
@@ -74,7 +73,7 @@ class ThemeListener extends AbstractListenerAggregate
     public function onRender(EventInterface $event)
     {
         /** @var Theme $theme */
-        if (!$theme = $this->themeManager->current()) {
+        if (! $theme = $this->themeManager->current()) {
             return;
         }
 

@@ -40,5 +40,4 @@ class RouteLayoutIdentifierResolver implements MvcEventAwareInterface, ResolverI
 
         return false;
     }
-
 }

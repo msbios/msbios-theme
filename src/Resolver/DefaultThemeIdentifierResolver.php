@@ -4,6 +4,7 @@
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
 namespace MSBios\Theme\Resolver;
+
 use Zend\Config\Config;
 
 /**

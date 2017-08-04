@@ -28,19 +28,11 @@ class LayoutListener extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-<<<<<<< HEAD:src/Listener/LayoutListenerAggregate.php
-        if (! is_null($event->getResult())) {
-            return;
-        }
-=======
         /** @var array $listener */
         $listener = [$this, 'onRender'];
-        // $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH, $listener, $priority);
-        // $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, $listener, $priority);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER, $listener, $priority);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, $listener, $priority);
     }
->>>>>>> 38e56064bc5259188b2869930b57d214f425a413:src/Listener/LayoutListener.php
 
     /**
      * @param EventInterface $event
