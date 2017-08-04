@@ -40,5 +40,4 @@ class RouteResolver implements MvcEventAwareInterface, ResolverInterface
 
         return false;
     }
-
 }

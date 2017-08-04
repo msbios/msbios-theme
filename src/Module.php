@@ -49,14 +49,14 @@ class Module implements
         $options = $serviceManager->get(self::class);
 
         foreach ($options->get('listeners') as $listener) {
-
             if ($serviceManager->has($listener)) {
                 $serviceManager->get($listener)
                     ->attach($target->getEventManager(), 100500);
                 continue;
             } else {
                 (new $listener($serviceManager))->attach(
-                    $target->getEventManager(), 100500
+                    $target->getEventManager(),
+                    100500
                 );
             }
         }

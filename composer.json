@@ -24,10 +24,10 @@
     }
   },
   "require": {
-    "msbios/msbios": "^0.0.1",
     "zendframework/zend-loader": "^2.5",
-    "zendframework/zend-i18n": "^2.7",
-    "zendframework/zend-servicemanager": "^3.3"
+    "zendframework/zend-servicemanager": "^3.3",
+    "msbios/msbios": "^0.0.1",
+    "msbios/i18n": "^0.0.2"
   },
   "require-dev": {
     "zendframework/zend-test": "^3.1",

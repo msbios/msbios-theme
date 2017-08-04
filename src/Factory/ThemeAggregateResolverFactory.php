@@ -40,7 +40,6 @@ class ThemeAggregateResolverFactory implements FactoryInterface
          * @var int $priority
          */
         foreach ($config->getResolversConfigurationThemes() as $resolverName => $priority) {
-
             if ($container->has($resolverName)) {
                 /** @var ResolverInterface $resolverService */
                 $resolverService = $container->get($resolverName);

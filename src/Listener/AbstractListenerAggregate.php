@@ -53,5 +53,5 @@ abstract class AbstractListenerAggregate extends DefaultAbstractListenerAggregat
      * @param EventInterface $event
      * @return mixed
      */
-    public abstract function onDispatch(EventInterface $event);
+    abstract public function onDispatch(EventInterface $event);
 }

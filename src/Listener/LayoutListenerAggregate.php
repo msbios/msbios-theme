@@ -24,14 +24,14 @@ class LayoutListenerAggregate extends AbstractListenerAggregate
      */
     public function onDispatch(EventInterface $event)
     {
-        if (!is_null($event->getResult())) {
+        if (! is_null($event->getResult())) {
             return;
         }
 
         /** @var RouteMatch $routeMatch */
         $routeMatch = $event->getRouteMatch();
 
-        if (!$routeMatch instanceof RouteMatch) {
+        if (! $routeMatch instanceof RouteMatch) {
             return;
         }
 

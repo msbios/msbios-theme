@@ -57,13 +57,13 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
 
         /** @var string $path */
         foreach ($this->options->getGlobalPaths() as $path) {
-            if (!is_dir($path)) {
+            if (! is_dir($path)) {
                 continue;
             }
 
             /** @var \DirectoryIterator $item */
             foreach (new \DirectoryIterator($path) as $item) {
-                if (!$item->isDot() && $item->isDir()) {
+                if (! $item->isDot() && $item->isDir()) {
 
                     /** @var string $path */
                     foreach ($this->options->getGlobalPaths() as $path) {

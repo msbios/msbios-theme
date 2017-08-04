@@ -28,7 +28,7 @@ class ThemeListenerAggregate extends AbstractListenerAggregate
         $themeManager = $this->serviceManager->get(ThemeManager::class);
 
         /** @var Theme $theme */
-        if (!$theme = $themeManager->current()) {
+        if (! $theme = $themeManager->current()) {
             return;
         }
 
