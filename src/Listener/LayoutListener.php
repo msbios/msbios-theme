@@ -26,7 +26,7 @@ class LayoutListener extends AbstractListenerAggregate
      * @param EventManagerInterface $events
      * @param int $priority
      */
-    public function attach(EventManagerInterface $events, $priority = 1)
+    public function attach(EventManagerInterface $events, $priority = -100900)
     {
         /** @var array $listener */
         $listener = [$this, 'onRender'];
