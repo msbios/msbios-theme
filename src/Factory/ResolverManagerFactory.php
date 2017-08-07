@@ -12,7 +12,6 @@ use MSBios\Theme\Resolver\OptionsAwareInterface;
 use MSBios\Theme\Resolver\MvcEventAwareInterface;
 use MSBios\Theme\Resolver\ResolverInterface;
 use MSBios\Theme\ResolverManager;
-use MSBios\Theme\ResolverManagerInterface;
 use Zend\Config\Config;
 use Zend\ServiceManager\Factory\FactoryInterface;
 

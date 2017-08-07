@@ -6,8 +6,12 @@
 
 namespace MSBios\Theme\Listener;
 
+use MSBios\Assetic\Resolver\CollectionResolver;
+use MSBios\Assetic\Resolver\MapResolver;
+use MSBios\Assetic\Resolver\PathStackResolver;
 use MSBios\Theme\Theme;
 use MSBios\Theme\ThemeManager;
+use Zend\Config\Config;
 use Zend\EventManager\EventInterface;
 use Zend\I18n\Exception\InvalidArgumentException;
 use Zend\I18n\Translator\TranslatorInterface;
@@ -25,7 +29,8 @@ class ThemeListener
     public function onRender(EventInterface $event)
     {
         /** @var ServiceLocatorInterface $serviceManager */
-        $serviceManager = $event->getTarget()->getServiceManager();
+        $serviceManager = $event->getTarget()
+            ->getServiceManager();
 
         /** @var Theme $theme */
         if (!$theme = $serviceManager->get(ThemeManager::class)->current()) {
@@ -56,6 +61,11 @@ class ThemeListener
         if ($templateTranslations = $theme->getTranslationFilePatterns()) {
             $this->injectTranslationFilePatterns($templateTranslations, $serviceManager);
         }
+
+        /** @var array $assetics */
+        if ($assetics = $theme->getAssetics()) {
+            $this->injectAssetics($assetics, $serviceManager);
+        }
     }
 
     /**
@@ -84,5 +94,29 @@ class ThemeListener
                 isset($pattern['text_domain']) ? $pattern['text_domain'] : 'default'
             );
         }
+    }
+
+    /**
+     * @param $assetics
+     * @param ServiceLocatorInterface $serviceManager
+     */
+    protected function injectAssetics($assetics, ServiceLocatorInterface $serviceManager)
+    {
+
+        if ($collections = $assetics->get('collections')) {
+            $serviceManager->get(CollectionResolver::class)
+                ->addCollections($collections);
+        }
+
+        if ($paths = $assetics->get('paths')) {
+            $serviceManager->get(PathStackResolver::class)
+                ->addPaths($paths);
+        }
+
+        if ($maps = $assetics->get('maps')) {
+            $serviceManager->get(MapResolver::class)
+                ->addMaps($maps);
+        }
+
     }
 }

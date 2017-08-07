@@ -5,7 +5,6 @@
  */
 namespace MSBios\Theme;
 
-use MSBios\Theme\Resolver\AggregateResolverInterface;
 use MSBios\Theme\Resolver\ResolverInterface;
 use Zend\Stdlib\PriorityQueue;
 
@@ -13,7 +12,7 @@ use Zend\Stdlib\PriorityQueue;
  * Class ResolverManager
  * @package MSBios\Theme
  */
-class ResolverManager implements AggregateResolverInterface
+class ResolverManager implements ResolverManagerInterface
 {
     /** @var PriorityQueue|ResolverInterface[] */
     protected $queue;
@@ -45,7 +44,6 @@ class ResolverManager implements AggregateResolverInterface
      */
     public function getIdentifier()
     {
-
         if (count($this->queue)) {
 
             /** @var ResolverInterface $detector */

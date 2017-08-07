@@ -14,13 +14,17 @@ use Zend\Config\Config;
  */
 class Theme extends Object
 {
+    /** @var Config */
+    protected $options;
+
     /**
      * Theme constructor.
-     * @param Config $config
+     * @param Config $options
      */
-    public function __construct(Config $config)
+    public function __construct(Config $options)
     {
-        $this->addData($config->toArray());
+        $this->addData($options->toArray());
+        $this->options = $options;
     }
 
     /**
@@ -77,5 +81,13 @@ class Theme extends Object
     public function getTranslationFilePatterns()
     {
         return $this->getData('translation_file_patterns');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssetics()
+    {
+        return $this->options->get('assetics');
     }
 }

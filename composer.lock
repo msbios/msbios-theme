@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "02b483176cd6cd620f8ebf2f0cfda083",
+    "content-hash": "9e189be273c34f3601a5a6d80ddf4c0d",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -36,6 +36,54 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "msbios/assetic",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/msbios/msbios-assetic.git",
+                "reference": "abd4723a0b3b98d70b352b85ca12130ea1e22cdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/msbios/msbios-assetic/zipball/abd4723a0b3b98d70b352b85ca12130ea1e22cdc",
+                "reference": "abd4723a0b3b98d70b352b85ca12130ea1e22cdc",
+                "shasum": ""
+            },
+            "require": {
+                "msbios/msbios": "^0.0.1",
+                "zendframework/zend-loader": "^2.5",
+                "zendframework/zend-modulemanager": "^2.8",
+                "zendframework/zend-servicemanager": "^3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.0",
+                "zendframework/zend-test": "^3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MSBios\\Assetic\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Judzhin Miles",
+                    "email": "info@msbios.com"
+                }
+            ],
+            "description": "MSBios Assetic",
+            "homepage": "https://github.com/msbios/msbios-assetic",
+            "keywords": [
+                "php"
+            ],
+            "time": "2017-08-07T20:06:41+00:00"
         },
         {
             "name": "msbios/i18n",

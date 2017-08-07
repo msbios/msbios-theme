@@ -21,6 +21,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 /**
  * Class Module
  * @package MSBios\Theme
+ *
+ * @TODO: Модуль перезатерает изменения леяута, в контролере нет возможности изменить леяут
  */
 class Module implements
     ModuleInterface,
@@ -47,18 +49,6 @@ class Module implements
 
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $target->getServiceManager();
-
-        // /** @var Config $options */
-        // $options = $serviceManager->get(self::class);
-
-        ///**
-        // * @var string $listener
-        // * @var mixed $priority
-        // */
-        //foreach ($options->get('listeners') as $listener => $priority) {
-        //    $serviceManager->get($listener)
-        //        ->attach($target->getEventManager());
-        //}
 
         (new LazyListenerAggregate(
             $serviceManager->get(self::class)->get('listeners')->toArray(),

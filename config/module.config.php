@@ -58,6 +58,7 @@ return [
             Resolver\RouteLayoutIdentifierResolver::class => -100700
         ],
 
+        // Module listeners
         'listeners' => [
             [
                 'listener' => Listener\ThemeListener::class,
@@ -72,13 +73,13 @@ return [
             ], [
                 'listener' => Listener\LayoutListener::class,
                 'method' => 'onRender',
-                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER,
-                'priority' => 1,
+                'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH,
+                'priority' => 100,
             ], [
                 'listener' => Listener\LayoutListener::class,
                 'method' => 'onRender',
-                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
-                'priority' => 1,
+                'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
+                'priority' => 100,
             ]
         ],
 
