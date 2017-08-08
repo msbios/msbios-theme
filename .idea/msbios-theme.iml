@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/assetic" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/i18n" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/stdlib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
@@ -40,6 +41,7 @@
       <library name="PHP" type="php">
         <CLASSES>
           <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/vendor/msbios/assetic" />
           <root url="file://$MODULE_DIR$/vendor/msbios/i18n" />
           <root url="file://$MODULE_DIR$/vendor/msbios/stdlib" />
           <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
@@ -73,6 +75,7 @@
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/vendor/msbios/assetic" />
           <root url="file://$MODULE_DIR$/vendor/msbios/i18n" />
           <root url="file://$MODULE_DIR$/vendor/msbios/stdlib" />
           <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />

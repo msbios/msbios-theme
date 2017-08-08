@@ -86,8 +86,16 @@ class Theme extends Object
     /**
      * @return mixed
      */
-    public function getAssetics()
+    public function getAsseticManager()
     {
-        return $this->options->get('assetics');
+        return $this->options->get('assetic_manager');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWidgetManager()
+    {
+        return $this->options->get('widget_manager');
     }
 }

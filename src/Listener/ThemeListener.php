@@ -62,9 +62,14 @@ class ThemeListener
             $this->injectTranslationFilePatterns($templateTranslations, $serviceManager);
         }
 
-        /** @var array $assetics */
-        if ($assetics = $theme->getAssetics()) {
-            $this->injectAssetics($assetics, $serviceManager);
+        /** @var array $asseticConfiguration */
+        if ($asseticConfiguration = $theme->getAsseticManager()) {
+            $this->injectAssetics($asseticConfiguration, $serviceManager);
+        }
+
+        /** @var array $widgetConfiguration */
+        if ($widgetConfiguration = $theme->getWidgetManager()) {
+            $this->injectWidgetManaget($widgetConfiguration, $serviceManager);
         }
     }
 
@@ -97,26 +102,53 @@ class ThemeListener
     }
 
     /**
-     * @param $assetics
+     * @param $asseticConfiguration
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectAssetics($assetics, ServiceLocatorInterface $serviceManager)
+    protected function injectAssetics($asseticConfiguration, ServiceLocatorInterface $serviceManager)
     {
 
-        if ($collections = $assetics->get('collections')) {
+        if ($collections = $asseticConfiguration->get('collections')) {
             $serviceManager->get(CollectionResolver::class)
                 ->addCollections($collections);
         }
 
-        if ($paths = $assetics->get('paths')) {
+        if ($paths = $asseticConfiguration->get('paths')) {
             $serviceManager->get(PathStackResolver::class)
                 ->addPaths($paths);
         }
 
-        if ($maps = $assetics->get('maps')) {
+        if ($maps = $asseticConfiguration->get('maps')) {
             $serviceManager->get(MapResolver::class)
                 ->addMaps($maps);
         }
 
+    }
+
+    /**
+     * @param $widgetManagerConfiguration
+     * @param ServiceLocatorInterface $serviceManager
+     */
+    protected function injectWidgetManaget($widgetManagerConfiguration, ServiceLocatorInterface $serviceManager)
+    {
+        /**
+         * And we put our theme paths on top of the stack.
+         * This way if there is template in our theme it will be taken and used
+         * Otherwise we will use the ones provided earlier from the application
+         */
+        if ($templatePathStack = $widgetManagerConfiguration->getTemplatePathStack()) {
+            $serviceManager->get('WidgetTemplatePathStack')
+                ->addPaths($templatePathStack);
+        }
+
+        /**
+         * We override the template resolver
+         * Here we add the changes that need to be applied to the existing
+         * template map
+         */
+        if ($templateMap = $widgetManagerConfiguration->getTemplateMap()) {
+            $serviceManager->get('WidgetTemplateMapResolver')
+                ->merge($templateMap);
+        }
     }
 }
