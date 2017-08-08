@@ -36,8 +36,10 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
      * @param Config $options
      */
     public function __construct(
-        ResolverManagerInterface $resolver, Config $options)
-    {
+        ResolverManagerInterface $resolver,
+        Config $options
+    ) {
+
         $this->resolver = $resolver;
         $this->options = $options;
         $this->init();
@@ -59,13 +61,13 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
 
         /** @var string $path */
         foreach ($globalPaths as $path) {
-            if (!is_dir($path)) {
+            if (! is_dir($path)) {
                 continue;
             }
 
             /** @var \DirectoryIterator $item */
             foreach (new \DirectoryIterator($path) as $item) {
-                if (!$item->isDot() && $item->isDir()) {
+                if (! $item->isDot() && $item->isDir()) {
 
                     /** @var string $path */
                     foreach ($globalPaths as $path) {
@@ -105,7 +107,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
      */
     public function hasTheme($identifierOrInstance)
     {
-        if (!is_string($identifierOrInstance) && !$identifierOrInstance instanceof Theme) {
+        if (! is_string($identifierOrInstance) && ! $identifierOrInstance instanceof Theme) {
             throw new InvalidArgumentException(
                 "Illegal argument! \$identifierOrInstance must either be a string or an instance of " . Theme::class
             );
@@ -115,7 +117,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
         $identifier = is_string($identifierOrInstance)
             ? $identifierOrInstance : $identifierOrInstance->getIdentifier();
 
-        return !is_null($this->getTheme($identifier));
+        return ! is_null($this->getTheme($identifier));
     }
 
     /**
@@ -124,7 +126,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
      */
     public function addTheme(Theme $theme)
     {
-        if (!$this->hasTheme($theme)) {
+        if (! $this->hasTheme($theme)) {
             $this->themes[] = $theme;
         }
 
@@ -138,7 +140,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     public function removeTheme($identityOrInstance)
     {
 
-        if (!$this->hasTheme($identityOrInstance)) {
+        if (! $this->hasTheme($identityOrInstance)) {
             return false;
         }
 
@@ -183,7 +185,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
         /** @var Theme $theme */
         $theme = $this->getTheme($identifier);
 
-        if (!$theme) {
+        if (! $theme) {
             /** @var Theme $theme */
             $theme = $this->getDefaultTheme();
             // TODO: if not find default theme must be throw exception

@@ -33,7 +33,7 @@ class ThemeListener
             ->getServiceManager();
 
         /** @var Theme $theme */
-        if (!$theme = $serviceManager->get(ThemeManager::class)->current()) {
+        if (! $theme = $serviceManager->get(ThemeManager::class)->current()) {
             return;
         }
 
@@ -59,7 +59,10 @@ class ThemeListener
 
         /** @var array $templateTranslations */
         if ($templateTranslations = $theme->getTranslationFilePatterns()) {
-            $this->injectTranslationFilePatterns($templateTranslations, $serviceManager);
+            $this->injectTranslationFilePatterns(
+                $templateTranslations,
+                $serviceManager
+            );
         }
 
         /** @var array $asseticConfiguration */
@@ -67,9 +70,8 @@ class ThemeListener
             $this->injectAssetics($asseticConfiguration, $serviceManager);
         }
 
-        /** @var array $widgetConfiguration */
-        if ($widgetConfiguration = $theme->getWidgetManager()) {
-            $this->injectWidgetManaget($widgetConfiguration, $serviceManager);
+        if ($widgetManager = $theme->getWidgetManager()) {
+            $this->injectWidgetManaget($widgetManager, $serviceManager);
         }
     }
 
@@ -77,8 +79,11 @@ class ThemeListener
      * @param $templateTranslations
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectTranslationFilePatterns($templateTranslations, ServiceLocatorInterface $serviceManager)
-    {
+    protected function injectTranslationFilePatterns(
+        $templateTranslations,
+        ServiceLocatorInterface $serviceManager
+    ) {
+
         /** @var array $pattern */
         foreach ($templateTranslations as $pattern) {
 
@@ -105,8 +110,11 @@ class ThemeListener
      * @param $asseticConfiguration
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectAssetics($asseticConfiguration, ServiceLocatorInterface $serviceManager)
-    {
+    protected function injectAssetics(
+        $asseticConfiguration,
+        ServiceLocatorInterface $serviceManager
+    ) {
+
 
         if ($collections = $asseticConfiguration->get('collections')) {
             $serviceManager->get(CollectionResolver::class)
@@ -122,33 +130,27 @@ class ThemeListener
             $serviceManager->get(MapResolver::class)
                 ->addMaps($maps);
         }
-
     }
 
     /**
      * @param $widgetManagerConfiguration
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectWidgetManaget($widgetManagerConfiguration, ServiceLocatorInterface $serviceManager)
-    {
-        /**
-         * And we put our theme paths on top of the stack.
-         * This way if there is template in our theme it will be taken and used
-         * Otherwise we will use the ones provided earlier from the application
-         */
-        if ($templatePathStack = $widgetManagerConfiguration->getTemplatePathStack()) {
+    protected function injectWidgetManaget(
+        $widgetManagerConfiguration,
+        ServiceLocatorInterface $serviceManager
+    ) {
+
+        /** @var Config $templatePathStack */
+        if ($templatePathStack = $widgetManagerConfiguration->get('template_path_stack')) {
             $serviceManager->get('WidgetTemplatePathStack')
-                ->addPaths($templatePathStack);
+                ->addPaths($templatePathStack->toArray());
         }
 
-        /**
-         * We override the template resolver
-         * Here we add the changes that need to be applied to the existing
-         * template map
-         */
-        if ($templateMap = $widgetManagerConfiguration->getTemplateMap()) {
+        /** @var Config $templateMap */
+        if ($templateMap = $widgetManagerConfiguration->get('template_map')) {
             $serviceManager->get('WidgetTemplateMapResolver')
-                ->merge($templateMap);
+                ->merge($templateMap->toArray());
         }
     }
 }

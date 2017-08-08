@@ -32,7 +32,7 @@ class LayoutListener
             /** @var RouteMatch $routeMatch */
             $routeMatch = $event->getRouteMatch();
 
-            if (!$routeMatch instanceof RouteMatch) {
+            if (! $routeMatch instanceof RouteMatch) {
                 return;
             }
 
@@ -48,7 +48,5 @@ class LayoutListener
                 $viewModel->setTemplate("layout/{$identifier}");
             }
         }
-
-
     }
 }
