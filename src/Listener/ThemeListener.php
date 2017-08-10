@@ -6,9 +6,6 @@
 
 namespace MSBios\Theme\Listener;
 
-use MSBios\Assetic\Resolver\CollectionResolver;
-use MSBios\Assetic\Resolver\MapResolver;
-use MSBios\Assetic\Resolver\PathStackResolver;
 use MSBios\Theme\Theme;
 use MSBios\Theme\ThemeManager;
 use Zend\Config\Config;
@@ -65,11 +62,6 @@ class ThemeListener
             );
         }
 
-        /** @var array $asseticConfiguration */
-        if ($asseticConfiguration = $theme->getAsseticManager()) {
-            $this->injectAssetics($asseticConfiguration, $serviceManager);
-        }
-
         if ($widgetManager = $theme->getWidgetManager()) {
             $this->injectWidgetManaget($widgetManager, $serviceManager);
         }
@@ -103,32 +95,6 @@ class ThemeListener
                 $pattern['pattern'],
                 isset($pattern['text_domain']) ? $pattern['text_domain'] : 'default'
             );
-        }
-    }
-
-    /**
-     * @param $asseticConfiguration
-     * @param ServiceLocatorInterface $serviceManager
-     */
-    protected function injectAssetics(
-        $asseticConfiguration,
-        ServiceLocatorInterface $serviceManager
-    ) {
-
-
-        if ($collections = $asseticConfiguration->get('collections')) {
-            $serviceManager->get(CollectionResolver::class)
-                ->addCollections($collections);
-        }
-
-        if ($paths = $asseticConfiguration->get('paths')) {
-            $serviceManager->get(PathStackResolver::class)
-                ->addPaths($paths);
-        }
-
-        if ($maps = $asseticConfiguration->get('maps')) {
-            $serviceManager->get(MapResolver::class)
-                ->addMaps($maps);
         }
     }
 
