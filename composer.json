@@ -30,7 +30,6 @@
     "msbios/msbios": "^0.0.1",
     "msbios/i18n": "^0.0.2",
     "msbios/stdlib": "^0.0.1",
-    "msbios/assetic": "^0.0.1",
     "msbios/widget": "^0.0.1"
   },
   "require-dev": {
