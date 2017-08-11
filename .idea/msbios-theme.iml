@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/assetic" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/i18n" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/stdlib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/widget" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -44,6 +45,7 @@
           <root url="file://$MODULE_DIR$/vendor/msbios/assetic" />
           <root url="file://$MODULE_DIR$/vendor/msbios/i18n" />
           <root url="file://$MODULE_DIR$/vendor/msbios/stdlib" />
+          <root url="file://$MODULE_DIR$/vendor/msbios/widget" />
           <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -78,6 +80,7 @@
           <root url="file://$MODULE_DIR$/vendor/msbios/assetic" />
           <root url="file://$MODULE_DIR$/vendor/msbios/i18n" />
           <root url="file://$MODULE_DIR$/vendor/msbios/stdlib" />
+          <root url="file://$MODULE_DIR$/vendor/msbios/widget" />
           <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
