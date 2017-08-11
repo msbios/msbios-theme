@@ -6,12 +6,12 @@
 return [
     'identifier' => 'examples',
     'title' => 'Default Examples Theme',
-    'description' => 'Default Examples Theme Descritpion',
+    'description' => 'Default Examples Theme Description',
     'template_map' => [
-        'somename/somename' => __DIR__ . '/view/path/to/file'
+        'example/example' => __DIR__ . '/path/to/file'
     ],
     'template_path_stack' => [
-        __DIR__ . '/view/',
+        __DIR__ . '/path/to/file/',
     ],
     'translation_file_patterns' => [
         [
@@ -20,23 +20,12 @@ return [
             'pattern' => '%s.mo',
         ],
     ],
-    'assetic_manager' => [
-
-        'collections' => [
-        ],
-
-        'paths' => [
-        ],
-
-        'maps' => [
-        ],
-    ],
     'widget_manager' => [
         'template_map' => [
-            'somename/somename' => __DIR__ . '/view/path/to/file'
+            'example/example' => __DIR__ . '/path/to/file'
         ],
         'template_path_stack' => [
-            __DIR__ . '/view/',
+            __DIR__ . '/path/to/file/',
         ],
     ],
 ];

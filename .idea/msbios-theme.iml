@@ -4,9 +4,12 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/assetic" />
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/i18n" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/stdlib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/msbios/widget" />
+=======
+>>>>>>> 28322c27046cc028bcb5f239c04c33d845ca46b3
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -39,8 +42,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="PHP" type="php">
+      <library name="PHP Runtime" type="php">
         <CLASSES>
+<<<<<<< HEAD
           <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
           <root url="file://$MODULE_DIR$/vendor/msbios/assetic" />
           <root url="file://$MODULE_DIR$/vendor/msbios/i18n" />
@@ -119,6 +123,12 @@
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-1.0.0.phar/" />
+=======
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
+        </CLASSES>
+        <SOURCES>
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
+>>>>>>> 28322c27046cc028bcb5f239c04c33d845ca46b3
         </SOURCES>
       </library>
     </orderEntry>
