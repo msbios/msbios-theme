@@ -102,7 +102,8 @@ class ThemeListener
      * @param Config $widgetManager
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectWidgetManaget(Config $widgetManager, ServiceLocatorInterface $serviceManager) {
+    protected function injectWidgetManaget(Config $widgetManager, ServiceLocatorInterface $serviceManager)
+    {
         /** @var Config $templatePathStack */
         if ($templatePathStack = $widgetManager->get('template_path_stack')) {
             $serviceManager->get('WidgetTemplatePathStack')
