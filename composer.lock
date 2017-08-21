@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "140645f3ee33557a6c408fb3313e2ced",
+    "content-hash": "216929a8a13dbc26b0ece9ec9e20a288",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -164,16 +164,16 @@
         },
         {
             "name": "msbios/i18n",
-            "version": "v0.0.2",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msbios/msbios-i18n.git",
-                "reference": "3e1f78242ff2ff843c997d4348079628f6b4e67f"
+                "reference": "6f76bc512726bc9f593550ffc4e366337f9f04dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msbios/msbios-i18n/zipball/3e1f78242ff2ff843c997d4348079628f6b4e67f",
-                "reference": "3e1f78242ff2ff843c997d4348079628f6b4e67f",
+                "url": "https://api.github.com/repos/msbios/msbios-i18n/zipball/6f76bc512726bc9f593550ffc4e366337f9f04dd",
+                "reference": "6f76bc512726bc9f593550ffc4e366337f9f04dd",
                 "shasum": ""
             },
             "require": {
@@ -209,7 +209,7 @@
             "keywords": [
                 "php"
             ],
-            "time": "2017-08-03T10:20:23+00:00"
+            "time": "2017-08-11T21:38:46+00:00"
         },
         {
             "name": "msbios/msbios",
