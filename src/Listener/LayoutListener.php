@@ -23,7 +23,7 @@ class LayoutListener
     /**
      * @param EventInterface $event
      */
-    public function onRender(EventInterface $event)
+    public function onDispatch(EventInterface $event)
     {
         /** @var string $error */
         $error = $event->getError();

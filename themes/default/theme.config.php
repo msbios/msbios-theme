@@ -26,6 +26,7 @@ return [
 
     'widget_manager' => [
         'template_map' => [
+            // Template Map
         ],
         'template_path_stack' => [
             __DIR__ . '/widget/'

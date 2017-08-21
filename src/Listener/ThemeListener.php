@@ -35,16 +35,6 @@ class ThemeListener
         }
 
         /**
-         * And we put our theme paths on top of the stack.
-         * This way if there is template in our theme it will be taken and used
-         * Otherwise we will use the ones provided earlier from the application
-         */
-        if ($templatePathStack = $theme->getTemplatePathStack()) {
-            $serviceManager->get('ViewTemplatePathStack')
-                ->addPaths($templatePathStack);
-        }
-
-        /**
          * We override the template resolver
          * Here we add the changes that need to be applied to the existing
          * template map
@@ -52,6 +42,16 @@ class ThemeListener
         if ($templateMap = $theme->getTemplateMap()) {
             $serviceManager->get('ViewTemplateMapResolver')
                 ->merge($templateMap);
+        }
+
+        /**
+         * And we put our theme paths on top of the stack.
+         * This way if there is template in our theme it will be taken and used
+         * Otherwise we will use the ones provided earlier from the application
+         */
+        if ($templatePathStack = $theme->getTemplatePathStack()) {
+            $serviceManager->get('ViewTemplatePathStack')
+                ->addPaths($templatePathStack);
         }
 
         /** @var array $templateTranslations */
@@ -63,7 +63,7 @@ class ThemeListener
         }
 
         if ($widgetManager = $theme->getWidgetManager()) {
-            $this->injectWidgetManaget($widgetManager, $serviceManager);
+            $this->injectWidgetManaget(new Config($widgetManager), $serviceManager);
         }
     }
 
@@ -99,22 +99,18 @@ class ThemeListener
     }
 
     /**
-     * @param $widgetManagerConfiguration
+     * @param Config $widgetManager
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectWidgetManaget(
-        $widgetManagerConfiguration,
-        ServiceLocatorInterface $serviceManager
-    ) {
-
+    protected function injectWidgetManaget(Config $widgetManager, ServiceLocatorInterface $serviceManager) {
         /** @var Config $templatePathStack */
-        if ($templatePathStack = $widgetManagerConfiguration->get('template_path_stack')) {
+        if ($templatePathStack = $widgetManager->get('template_path_stack')) {
             $serviceManager->get('WidgetTemplatePathStack')
                 ->addPaths($templatePathStack->toArray());
         }
 
         /** @var Config $templateMap */
-        if ($templateMap = $widgetManagerConfiguration->get('template_map')) {
+        if ($templateMap = $widgetManager->get('template_map')) {
             $serviceManager->get('WidgetTemplateMapResolver')
                 ->merge($templateMap->toArray());
         }

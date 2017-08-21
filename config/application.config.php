@@ -11,8 +11,8 @@ return [
         'Zend\I18n',
         'Zend\Router',
         'MSBios\Assetic',
-        'MSBios\Theme',
         'MSBios\Widget',
+        'MSBios\Theme',
 
         'Zend\Log',
         'ZendDeveloperTools',

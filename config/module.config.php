@@ -6,22 +6,47 @@
 
 namespace MSBios\Theme;
 
+use Zend\Router\Http\Literal;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 return [
+
+    'router' => [
+        'routes' => [
+            'home' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'index',
+                    ],
+                ],
+            ],
+        ],
+        'default_params' => [
+            // Specify default parameters here for all routes here ...
+        ]
+    ],
+
+    'controllers' => [
+        'factories' => [
+            Controller\IndexController::class => InvokableFactory::class,
+        ],
+    ],
+
     'service_manager' => [
         'invokables' => [
-
             // Resolvers
-            Resolver\DefaultThemeIdentifierResolver::class =>
-                Resolver\DefaultThemeIdentifierResolver::class,
-
-            Resolver\RouteThemeIdentifierResolver::class =>
-                Resolver\RouteThemeIdentifierResolver::class,
-
+            Resolver\DefaultThemeIdentifierResolver::class,
+            Resolver\RouteThemeIdentifierResolver::class,
             // listeners
-            Listener\ThemeListener::class =>
-                Listener\ThemeListener::class,
-            Listener\LayoutListener::class =>
-                Listener\LayoutListener::class,
+            Listener\ThemeListener::class,
+            Listener\LayoutListener::class,
+
+
+            // widgets
+            Widget\FollowDevelopmentWidget::class
         ],
         'factories' => [
             Module::class => Factory\ModuleFactory::class,
@@ -31,6 +56,25 @@ return [
             ThemeManager::class => Factory\ThemeManagerFactory::class
         ],
     ],
+
+     'view_manager' => [
+         'display_not_found_reason' => true,
+         'display_exceptions' => true,
+         'doctype' => 'HTML5',
+         'not_found_template' => 'error/404',
+         'exception_template' => 'error/index',
+         'template_map' => [
+            // 'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            // 'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            // 'error/404' => __DIR__ . '/../view/error/404.phtml',
+            // 'error/index' => __DIR__ . '/../view/error/index.phtml',
+         ],
+         'template_path_stack' => [
+             __DIR__ . '/../themes/default/view/',
+             __DIR__ . '/../themes/default/widget/',
+         ],
+     ],
+
     Module::class => [
 
         // default theme name if not set
@@ -72,60 +116,19 @@ return [
                 'priority' => 1,
             ], [
                 'listener' => Listener\LayoutListener::class,
-                'method' => 'onRender',
+                'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH,
-                'priority' => 100,
+                'priority' => 1,
             ], [
                 'listener' => Listener\LayoutListener::class,
-                'method' => 'onRender',
+                'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
-                'priority' => 100,
+                'priority' => 1,
             ]
         ],
 
         'themes' => [
-            'default' => [
-                'identifier' => 'default',
-                'title' => 'Default Application Theme',
-                'description' => 'Default Application Theme Descritpion',
-                // Doctype with which to seed the Doctype helper
-                // 'doctype' => $doctypeHelperConstantString, // e.g. HTML5, XHTML1
-                // TemplateMapResolver configuration
-                // template/path pairs
-                'template_map' => [
-                    // key => value
-                ],
-                // TemplatePathStack configuration
-                // module/view script path pairs
-                'template_path_stack' => [
-                    __DIR__ . '/../themes/default/view',
-                ],
-                // Default suffix to use when resolving template scripts, if none, 'phtml' is used
-                // 'default_template_suffix' => $templateSuffix, // e.g. 'php'
-                // Controller namespace to template map
-                // or whitelisting for controller FQCN to template mapping
-                'controller_map' => [
-                ],
-                // Layout template name
-                // 'layout' => $layoutTemplateName, // e.g. 'layout/layout'
-                // ExceptionStrategy configuration
-                // 'display_exceptions' => $bool, // display exceptions in template
-                // 'exception_template' => $stringTemplateName, // e.g. 'error'
-                // RouteNotFoundStrategy configuration
-                // 'display_not_found_reason' => $bool, // display 404 reason in template
-                // 'not_found_template' => $stringTemplateName, // e.g. '404'
-                // Additional strategies to attach
-                // These should be class names or service names of View strategy classes
-                // that act as ListenerAggregates. They will be attached at priority 100,
-                // in the order registered.
-                'translation_file_patterns' => [
-                    [
-                        'type' => 'gettext',
-                        'base_dir' => __DIR__ . '/../language/',
-                        'pattern' => '%s.mo',
-                    ],
-                ],
-            ],
+            // Some Themes
         ],
     ],
 ];

@@ -88,6 +88,6 @@ class Theme extends Object
      */
     public function getWidgetManager()
     {
-        return $this->options->get('widget_manager');
+        return $this->getData('widget_manager');
     }
 }
