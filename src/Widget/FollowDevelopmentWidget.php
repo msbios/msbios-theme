@@ -5,15 +5,18 @@
  */
 namespace MSBios\Theme\Widget;
 
-
 use MSBios\Widget\AbstractRendererWidget;
 
+/**
+ * Class FollowDevelopmentWidget
+ * @package MSBios\Theme\Widget
+ */
 class FollowDevelopmentWidget extends AbstractRendererWidget
 {
 
     /**
      * @param null $data
-     * @return mixed
+     * @return string
      */
     public function output($data = null)
     {

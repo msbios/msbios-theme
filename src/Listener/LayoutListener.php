@@ -25,28 +25,23 @@ class LayoutListener
      */
     public function onDispatch(EventInterface $event)
     {
-        /** @var string $error */
-        $error = $event->getError();
+        /** @var RouteMatch $routeMatch */
+        $routeMatch = $event->getRouteMatch();
 
-        if (empty($error) || Application::ERROR_EXCEPTION == $error) {
-            /** @var RouteMatch $routeMatch */
-            $routeMatch = $event->getRouteMatch();
+        if (! $routeMatch instanceof RouteMatch) {
+            return;
+        }
 
-            if (! $routeMatch instanceof RouteMatch) {
+        /** @var string $identifier */
+        if ($identifier = $routeMatch->getParam(self::IDENTIFIER)) {
+
+            /** @var ModelInterface $viewModel */
+            $viewModel = $event->getViewModel();
+            if (! $viewModel instanceof ModelInterface) {
                 return;
             }
 
-            /** @var string $identifier */
-            if ($identifier = $routeMatch->getParam(self::IDENTIFIER)) {
-
-                /** @var ModelInterface $viewModel */
-                $viewModel = $event->getViewModel();
-                if (! $viewModel instanceof ModelInterface) {
-                    return;
-                }
-
-                $viewModel->setTemplate("layout/{$identifier}");
-            }
+            $viewModel->setTemplate("layout/{$identifier}");
         }
     }
 }

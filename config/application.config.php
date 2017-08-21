@@ -10,7 +10,7 @@ return [
     'modules' => [
         'Zend\I18n',
         'Zend\Router',
-        'MSBios\Assetic',
+        // 'MSBios\Assetic',
         'MSBios\Widget',
         'MSBios\Theme',
 

@@ -57,23 +57,22 @@ return [
         ],
     ],
 
-     'view_manager' => [
-         'display_not_found_reason' => true,
-         'display_exceptions' => true,
-         'doctype' => 'HTML5',
-         'not_found_template' => 'error/404',
-         'exception_template' => 'error/index',
-         'template_map' => [
-            // 'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            // 'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
-            // 'error/404' => __DIR__ . '/../view/error/404.phtml',
-            // 'error/index' => __DIR__ . '/../view/error/index.phtml',
-         ],
-         'template_path_stack' => [
-             __DIR__ . '/../themes/default/view/',
-             __DIR__ . '/../themes/default/widget/',
-         ],
-     ],
+    'view_manager' => [
+        'display_not_found_reason' => true,
+        'display_exceptions' => true,
+        'doctype' => 'HTML5',
+        'not_found_template' => 'error/404',
+        'exception_template' => 'error/index',
+        'template_map' => [
+            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'ms-bios/theme/index/index' => __DIR__ . '/../view/ms-bios/theme/index/index.phtml',
+            'error/404' => __DIR__ . '/../view/error/404.phtml',
+            'error/index' => __DIR__ . '/../view/error/index.phtml',
+        ],
+        'template_path_stack' => [
+            __DIR__ . '/../themes/default/view/',
+        ],
+    ],
 
     Module::class => [
 
@@ -81,7 +80,7 @@ return [
         'default_theme_identifier' => 'default',
 
         // default layout name
-        'default_layout_identifier' => 'layout/default',
+        'default_layout_identifier' => 'layout/layout',
 
         // default global path form themes
         'default_global_paths' => [
@@ -109,17 +108,20 @@ return [
                 'method' => 'onRender',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER,
                 'priority' => 1,
-            ], [
+            ],
+            [
                 'listener' => Listener\ThemeListener::class,
                 'method' => 'onRender',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
                 'priority' => 1,
-            ], [
+            ],
+            [
                 'listener' => Listener\LayoutListener::class,
                 'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH,
                 'priority' => 1,
-            ], [
+            ],
+            [
                 'listener' => Listener\LayoutListener::class,
                 'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
