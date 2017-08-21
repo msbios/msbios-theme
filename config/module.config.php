@@ -6,34 +6,31 @@
 
 namespace MSBios\Theme;
 
-use Zend\Router\Http\Literal;
-use Zend\ServiceManager\Factory\InvokableFactory;
-
 return [
 
-    'router' => [
-        'routes' => [
-            'home' => [
-                'type' => Literal::class,
-                'options' => [
-                    'route' => '/',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action' => 'index',
-                    ],
-                ],
-            ],
-        ],
-        'default_params' => [
-            // Specify default parameters here for all routes here ...
-        ]
-    ],
-
-    'controllers' => [
-        'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
-        ],
-    ],
+    // 'router' => [
+    //     'routes' => [
+    //         'home' => [
+    //             'type' => Literal::class,
+    //             'options' => [
+    //                 'route' => '/',
+    //                 'defaults' => [
+    //                     'controller' => Controller\IndexController::class,
+    //                     'action' => 'index',
+    //                 ],
+    //             ],
+    //         ],
+    //     ],
+    //     'default_params' => [
+    //         // Specify default parameters here for all routes here ...
+    //     ]
+    // ],
+    //
+    // 'controllers' => [
+    //     'factories' => [
+    //         Controller\IndexController::class => InvokableFactory::class,
+    //     ],
+    // ],
 
     'service_manager' => [
         'invokables' => [
@@ -63,15 +60,6 @@ return [
         'doctype' => 'HTML5',
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
-        'template_map' => [
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'ms-bios/theme/index/index' => __DIR__ . '/../view/ms-bios/theme/index/index.phtml',
-            'error/404' => __DIR__ . '/../view/error/404.phtml',
-            'error/index' => __DIR__ . '/../view/error/index.phtml',
-        ],
-        'template_path_stack' => [
-            __DIR__ . '/../themes/default/view/',
-        ],
     ],
 
     Module::class => [
@@ -108,20 +96,17 @@ return [
                 'method' => 'onRender',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER,
                 'priority' => 1,
-            ],
-            [
+            ], [
                 'listener' => Listener\ThemeListener::class,
                 'method' => 'onRender',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
                 'priority' => 1,
-            ],
-            [
+            ], [
                 'listener' => Listener\LayoutListener::class,
                 'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH,
                 'priority' => 1,
-            ],
-            [
+            ], [
                 'listener' => Listener\LayoutListener::class,
                 'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
@@ -130,7 +115,38 @@ return [
         ],
 
         'themes' => [
-            // Some Themes
+            'default' => [
+                'identifier' => 'default',
+                'title' => 'Default Theme Title',
+                'description' => 'Default Theme Description',
+
+                'template_map' => [
+                    // 'layout/layout' => __DIR__ . '/view/layout/layout.phtml',
+                    // 'error/404' => __DIR__ . '/view/error/404.phtml',
+                    // 'error/index' => __DIR__ . '/view/error/index.phtml',
+                ],
+
+                'template_path_stack' => [
+                    __DIR__ . '/../themes/default/view/',
+                ],
+
+                'translation_file_patterns' => [
+                    [
+                        'type' => 'gettext',
+                        'base_dir' => __DIR__ . '/../themes/default/language/',
+                        'pattern' => '%s.mo',
+                    ],
+                ],
+
+                'widget_manager' => [
+                    'template_map' => [
+                        // Template Map
+                    ],
+                    'template_path_stack' => [
+                        __DIR__ . '/../themes/default/widget/'
+                    ],
+                ],
+            ]
         ],
     ],
 ];
