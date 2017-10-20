@@ -96,9 +96,11 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
 
         /** @var Config $theme */
         foreach ($themes as $theme) {
-            $this->addTheme(
-                new Theme($theme)
-            );
+            if ($theme instanceof Config) {
+                $this->addTheme(
+                    new Theme($theme)
+                );
+            }
         }
     }
 
