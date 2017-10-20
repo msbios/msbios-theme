@@ -72,7 +72,7 @@ return [
 
         // default global path form themes
         'default_global_paths' => [
-            './themes'
+            'default_global_paths' => './themes'
         ],
 
         // default config filename in theme folder

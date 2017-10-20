@@ -24,10 +24,6 @@
     }
   },
   "require": {
-    "zendframework/zend-loader": "^2.5",
-    "zendframework/zend-servicemanager": "^3.3",
-    "zendframework/zend-modulemanager": "^2.8",
-    "msbios/msbios": "~1.0",
     "msbios/widget": "~1.0",
     "msbios/assetic": "~1.0",
     "msbios/stdlib": "~1.0",
@@ -44,9 +40,25 @@
     "cs-fix": "phpcbf",
     "test": [
       "@cs-check",
-      "phpunit"
+      "phpunit --colors=always"
     ],
+    "themes": "cd bin && ln -s ../themes/default/public default",
     "serve": "php -S 0.0.0.0:3107 -t bin bin/msbios-theme-module.php",
-    "commit": "git add . && git commit -a -m \"Lazy Composer Commiter\" && git push"
+    "commit": "git add . && git commit -a -m \"Lazy Composer Commiter\" && git push",
+    "deploy": [
+      "@themes"
+    ],
+    "cache":[
+      "rm -Rf data/cache/*.php",
+      "rm -Rf data/cache/*.dat",
+      "rm -Rf data/logs/*.log"
+    ],
+    "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+    "upload-coverage": "coveralls -v"
+  },
+  "extra": {
+    "zf": {
+      "component": "MSBios\\Theme"
+    }
   }
 }
