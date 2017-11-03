@@ -6,51 +6,37 @@
 
 namespace MSBios\Theme;
 
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 return [
-
-    // 'router' => [
-    //     'routes' => [
-    //         'home' => [
-    //             'type' => Literal::class,
-    //             'options' => [
-    //                 'route' => '/',
-    //                 'defaults' => [
-    //                     'controller' => Controller\IndexController::class,
-    //                     'action' => 'index',
-    //                 ],
-    //             ],
-    //         ],
-    //     ],
-    //     'default_params' => [
-    //         // Specify default parameters here for all routes here ...
-    //     ]
-    // ],
-    //
-    // 'controllers' => [
-    //     'factories' => [
-    //         Controller\IndexController::class => InvokableFactory::class,
-    //     ],
-    // ],
-
     'service_manager' => [
-        'invokables' => [
-            // Resolvers
-            Resolver\DefaultThemeIdentifierResolver::class,
-            Resolver\RouteThemeIdentifierResolver::class,
-            // listeners
-            Listener\ThemeListener::class,
-            Listener\LayoutListener::class,
-
-
-            // widgets
-            Widget\FollowDevelopmentWidget::class
-        ],
         'factories' => [
-            Module::class => Factory\ModuleFactory::class,
+
+            Module::class =>
+                Factory\ModuleFactory::class,
 
             // Managers
-            ResolverManager::class => Factory\ResolverManagerFactory::class,
-            ThemeManager::class => Factory\ThemeManagerFactory::class
+            ThemeManager::class =>
+                Factory\ThemeManagerFactory::class,
+
+            ResolverManager::class =>
+                Factory\ResolverManagerFactory::class,
+
+            // Resolvers
+            Resolver\DefaultThemeIdentifierResolver::class =>
+                InvokableFactory::class,
+            Resolver\RouteThemeIdentifierResolver::class =>
+                InvokableFactory::class,
+
+            // Listeners
+            Listener\ThemeListener::class =>
+                InvokableFactory::class,
+            Listener\LayoutListener::class =>
+                InvokableFactory::class,
+
+            // Widgets
+            Widget\FollowDevelopmentWidget::class =>
+                InvokableFactory::class
         ],
     ],
 
@@ -121,9 +107,6 @@ return [
                 'description' => 'Default Theme Description',
 
                 'template_map' => [
-                    // 'layout/layout' => __DIR__ . '/view/layout/layout.phtml',
-                    // 'error/404' => __DIR__ . '/view/error/404.phtml',
-                    // 'error/index' => __DIR__ . '/view/error/index.phtml',
                 ],
 
                 'template_path_stack' => [

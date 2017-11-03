@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "996b592ac571343dd624d3604988ad27",
+    "content-hash": "1671a79fa108add2c98d0d453b6c60ae",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -212,6 +212,55 @@
             "time": "2017-09-09T19:38:39+00:00"
         },
         {
+            "name": "msbios/json",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/msbios/msbios-json.git",
+                "reference": "360d4a52327dbf9b729497820aae903380027f8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/msbios/msbios-json/zipball/360d4a52327dbf9b729497820aae903380027f8a",
+                "reference": "360d4a52327dbf9b729497820aae903380027f8a",
+                "shasum": ""
+            },
+            "require": {
+                "msbios/msbios": "^1.0",
+                "zendframework/zend-json": "^3.0",
+                "zendframework/zend-loader": "^2.5",
+                "zendframework/zend-modulemanager": "^2.8",
+                "zendframework/zend-servicemanager": "^3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.0",
+                "zendframework/zend-test": "^3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MSBios\\Json\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Judzhin Miles",
+                    "email": "info@msbios.com"
+                }
+            ],
+            "description": "MSBios Json",
+            "homepage": "https://github.com/msbios/msbios-json",
+            "keywords": [
+                "php"
+            ],
+            "time": "2017-09-11T14:56:35+00:00"
+        },
+        {
             "name": "msbios/msbios",
             "version": "v1.0.2",
             "source": {
@@ -259,20 +308,20 @@
         },
         {
             "name": "msbios/stdlib",
-            "version": "v1.0.0",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msbios/msbios-stdlib.git",
-                "reference": "ac8d1df1d7bebd7b982534f749a931a6898ae399"
+                "reference": "93882a3170932dd6a601abcc42084f560985c693"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msbios/msbios-stdlib/zipball/ac8d1df1d7bebd7b982534f749a931a6898ae399",
-                "reference": "ac8d1df1d7bebd7b982534f749a931a6898ae399",
+                "url": "https://api.github.com/repos/msbios/msbios-stdlib/zipball/93882a3170932dd6a601abcc42084f560985c693",
+                "reference": "93882a3170932dd6a601abcc42084f560985c693",
                 "shasum": ""
             },
             "require": {
-                "zendframework/zend-json": "^3.0",
+                "msbios/json": "~1.0",
                 "zendframework/zend-stdlib": "^3.1"
             },
             "require-dev": {
@@ -281,6 +330,11 @@
                 "zendframework/zend-test": "^3.1"
             },
             "type": "library",
+            "extra": {
+                "zf": {
+                    "component": "MSBios\\Voting\\Doctrine"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "MSBios\\Stdlib\\": "src/"
@@ -305,7 +359,7 @@
             "keywords": [
                 "php"
             ],
-            "time": "2017-09-09T10:03:35+00:00"
+            "time": "2017-11-02T08:49:38+00:00"
         },
         {
             "name": "msbios/widget",
@@ -731,16 +785,16 @@
         },
         {
             "name": "zendframework/zend-modulemanager",
-            "version": "2.8.0",
+            "version": "2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-modulemanager.git",
-                "reference": "c2c5b52ad9741e0b9a9c01a0ee72ab63e5b494b9"
+                "reference": "710c13353b1ff0975777dbeb39bbf1c85e3353a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-modulemanager/zipball/c2c5b52ad9741e0b9a9c01a0ee72ab63e5b494b9",
-                "reference": "c2c5b52ad9741e0b9a9c01a0ee72ab63e5b494b9",
+                "url": "https://api.github.com/repos/zendframework/zend-modulemanager/zipball/710c13353b1ff0975777dbeb39bbf1c85e3353a3",
+                "reference": "710c13353b1ff0975777dbeb39bbf1c85e3353a3",
                 "shasum": ""
             },
             "require": {
@@ -785,7 +839,7 @@
                 "modulemanager",
                 "zf2"
             ],
-            "time": "2017-07-11T19:39:57+00:00"
+            "time": "2017-11-01T18:30:41+00:00"
         },
         {
             "name": "zendframework/zend-servicemanager",
@@ -1238,6 +1292,57 @@
                 "php"
             ],
             "time": "2017-09-09T19:27:54+00:00"
+        },
+        {
+            "name": "msbios/test",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/msbios/msbios-test.git",
+                "reference": "9142886e2210d98ab9549be7742b632067e3b21c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/msbios/msbios-test/zipball/9142886e2210d98ab9549be7742b632067e3b21c",
+                "reference": "9142886e2210d98ab9549be7742b632067e3b21c",
+                "shasum": ""
+            },
+            "require": {
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.0",
+                "zendframework/zend-test": "^3.1"
+            },
+            "require-dev": {
+                "msbios/application": "^1.0",
+                "msbios/debug": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "zf": {
+                    "component": "MSBios\\Test"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MSBios\\Test\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Judzhin Miles",
+                    "email": "info@msbios.com"
+                }
+            ],
+            "description": "MSBios Test",
+            "homepage": "https://github.com/msbios/msbios-test",
+            "keywords": [
+                "php"
+            ],
+            "time": "2017-11-03T15:49:30+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3181,16 +3286,16 @@
         },
         {
             "name": "zendframework/zend-test",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-test.git",
-                "reference": "9665205827ed6ee69f1ef82990362057c789250c"
+                "reference": "9976fb519851276d56e201bc6211b3a94e6c3b19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-test/zipball/9665205827ed6ee69f1ef82990362057c789250c",
-                "reference": "9665205827ed6ee69f1ef82990362057c789250c",
+                "url": "https://api.github.com/repos/zendframework/zend-test/zipball/9976fb519851276d56e201bc6211b3a94e6c3b19",
+                "reference": "9976fb519851276d56e201bc6211b3a94e6c3b19",
                 "shasum": ""
             },
             "require": {
@@ -3233,7 +3338,10 @@
             "autoload": {
                 "psr-4": {
                     "Zend\\Test\\": "src/"
-                }
+                },
+                "files": [
+                    "autoload/phpunit-class-aliases.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3244,7 +3352,7 @@
                 "test",
                 "zf2"
             ],
-            "time": "2017-05-01T19:54:00+00:00"
+            "time": "2017-10-29T16:35:35+00:00"
         },
         {
             "name": "zendframework/zend-uri",
