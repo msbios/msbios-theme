@@ -48,7 +48,7 @@
       "rm -Rf data/cache/*.dat",
       "rm -Rf data/logs/*.log"
     ],
-    "deploy": [
+    "deploy":[
       "@themes",
       "@cache"
     ],

@@ -29,7 +29,8 @@ class Module implements
     BootstrapListenerInterface,
     AutoloaderProviderInterface
 {
-    const VERSION = '1.0.2';
+    /** @const VERSIOn */
+    const VERSION = '1.0.3';
 
     /**
      * @return mixed
