@@ -5,14 +5,17 @@
  */
 namespace MSBios\Theme\Widget;
 
-use MSBios\Widget\AbstractRendererWidget;
+use MSBios\Widget\RendererWidgetAwareInterface;
+use MSBios\Widget\RendererWidgetAwareTrait;
+use MSBios\Widget\WidgetInterface;
 
 /**
  * Class FollowDevelopmentWidget
  * @package MSBios\Theme\Widget
  */
-class FollowDevelopmentWidget extends AbstractRendererWidget
+class FollowDevelopmentWidget implements WidgetInterface, RendererWidgetAwareInterface
 {
+    use RendererWidgetAwareTrait;
 
     /**
      * @param null $data

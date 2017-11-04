@@ -9,6 +9,14 @@ namespace MSBios\Theme;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
+
+    'widget_manager' => [
+        'factories' => [
+            Widget\FollowDevelopmentWidget::class =>
+                InvokableFactory::class
+        ],
+    ],
+
     'service_manager' => [
         'factories' => [
 
@@ -33,10 +41,6 @@ return [
                 InvokableFactory::class,
             Listener\LayoutListener::class =>
                 InvokableFactory::class,
-
-            // Widgets
-            Widget\FollowDevelopmentWidget::class =>
-                InvokableFactory::class
         ],
     ],
 
