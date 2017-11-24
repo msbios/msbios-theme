@@ -5,22 +5,20 @@
  */
 namespace MSBios\Theme\Resolver;
 
-use Zend\Config\Config;
-
 /**
  * Class DefaultThemeIdentifierResolver
  * @package MSBios\Theme\Resolver
  */
 class DefaultThemeIdentifierResolver implements OptionsAwareInterface, ResolverInterface
 {
-    /** @var Config */
+    /** @var array */
     protected $options;
 
     /**
-     * @param Config $config
+     * @param array $config
      * @return $this
      */
-    public function setOptions(Config $config)
+    public function setOptions(array $config)
     {
         $this->options = $config;
         return $this;
@@ -31,6 +29,6 @@ class DefaultThemeIdentifierResolver implements OptionsAwareInterface, ResolverI
      */
     public function getIdentifier()
     {
-        return $this->options->get('default_theme_identifier');
+        return $this->options['default_theme_identifier'];
     }
 }

@@ -12,7 +12,7 @@ use MSBios\Theme\Resolver\OptionsAwareInterface;
 use MSBios\Theme\Resolver\MvcEventAwareInterface;
 use MSBios\Theme\Resolver\ResolverInterface;
 use MSBios\Theme\ResolverManager;
-use Zend\Config\Config;
+use MSBios\Theme\ResolverManagerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -25,11 +25,11 @@ class ResolverManagerFactory implements FactoryInterface
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return ResolverManager|ResolverManagerInterface
+     * @return ResolverManagerInterface|ResolverManager
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var Config $options */
+        /** @var array $options */
         $options = $container->get(Module::class);
 
         /** @var ResolverManagerInterface $resolverManager */
@@ -39,7 +39,7 @@ class ResolverManagerFactory implements FactoryInterface
          * @var string $resolverName
          * @var int $priority
          */
-        foreach ($options->get('resolvers_configuration_themes') as $resolverName => $priority) {
+        foreach ($options['resolvers_configuration_themes'] as $resolverName => $priority) {
 
             /** @var ResolverInterface $resolver */
             $resolver = $container->get($resolverName);

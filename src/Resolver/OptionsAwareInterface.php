@@ -5,8 +5,6 @@
  */
 namespace MSBios\Theme\Resolver;
 
-use Zend\Config\Config;
-
 /**
  * Interface OptionsAwareInterface
  * @package MSBios\Theme\Resolver
@@ -14,8 +12,8 @@ use Zend\Config\Config;
 interface OptionsAwareInterface
 {
     /**
-     * @param Config $config
+     * @param array $config
      * @return mixed
      */
-    public function setOptions(Config $config);
+    public function setOptions(array $config);
 }

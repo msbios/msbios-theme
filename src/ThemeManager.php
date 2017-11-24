@@ -7,7 +7,6 @@
 namespace MSBios\Theme;
 
 use MSBios\Theme\Exception\InvalidArgumentException;
-use Zend\Config\Config;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\InitializableInterface;
 
@@ -21,10 +20,10 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     /** @var  ResolverManagerInterface */
     protected $resolver;
 
-    /** @var Config */
+    /** @var array */
     protected $options;
 
-    /** @var \Zend\Config\Config */
+    /** @var array */
     protected $themes = [];
 
     /** @var Theme */
@@ -33,12 +32,10 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     /**
      * ThemeManager constructor.
      * @param ResolverManagerInterface $resolver
-     * @param Config $options
+     * @param array $options
      */
-    public function __construct(
-        ResolverManagerInterface $resolver,
-        Config $options
-    ) {
+    public function __construct(ResolverManagerInterface $resolver, array $options)
+    {
 
         $this->resolver = $resolver;
         $this->options = $options;
@@ -52,12 +49,11 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
      */
     public function init()
     {
-        /** @var array $optionsFromFile */
-        $optionsFromFile = [];
+        /** @var array $fromFiles */
+        $fromFiles = [];
 
-        /** @var Config $globalPaths */
-        $globalPaths = $this->options
-            ->get('default_global_paths');
+        /** @var array $globalPaths */
+        $globalPaths = $this->options['default_global_paths'];
 
         /** @var string $path */
         foreach ($globalPaths as $path) {
@@ -74,14 +70,13 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
 
                         /** @var string $filename */
                         $filename = implode(DIRECTORY_SEPARATOR, [
-                            $path, $item->getFilename(),
-                            $this->options->get('default_config_filename')
+                            $path, $item->getFilename(), $this->options['default_config_filename']
                         ]);
 
                         if (file_exists($filename)) {
                             /** @var array $config */
                             $config = require_once $filename;
-                            $optionsFromFile[$config['identifier']] = $config;
+                            $fromFiles[$config['identifier']] = $config;
                         }
                     }
                 }
@@ -89,18 +84,14 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
         }
 
         /** @var array $themes */
-        $themes = new Config(ArrayUtils::merge(
-            $this->options->get('themes')->toArray(),
-            $optionsFromFile
-        ));
+        $themes = ArrayUtils::merge(
+            $this->options['themes'],
+            $fromFiles
+        );
 
-        /** @var Config $theme */
+        /** @var array $theme */
         foreach ($themes as $theme) {
-            if ($theme instanceof Config) {
-                $this->addTheme(
-                    new Theme($theme)
-                );
-            }
+            $this->addTheme(new Theme($theme));
         }
     }
 
@@ -202,7 +193,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     public function getDefaultTheme()
     {
         return $this->getTheme(
-            $this->options->get('default_theme_identifier')
+            $this->options['default_theme_identifier']
         );
     }
 }

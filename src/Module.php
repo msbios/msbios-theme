@@ -30,7 +30,7 @@ class Module implements
     AutoloaderProviderInterface
 {
     /** @const VERSIOn */
-    const VERSION = '1.0.4';
+    const VERSION = '1.0.5';
 
     /**
      * @return mixed
@@ -52,7 +52,7 @@ class Module implements
         $serviceManager = $target->getServiceManager();
 
         (new LazyListenerAggregate(
-            $serviceManager->get(self::class)->get('listeners')->toArray(),
+            $serviceManager->get(self::class)['listeners'],
             $serviceManager
         ))->attach($target->getEventManager());
     }

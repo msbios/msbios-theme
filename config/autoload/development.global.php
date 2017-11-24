@@ -1,11 +1,15 @@
 <?php
-
+/**
+ * @access protected
+ * @author Judzhin Miles <info[woof-woof]msbios.com>
+ */
 namespace MSBios\Theme;
 
 use Zend\Router\Http\Literal;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
+
     'router' => [
         'routes' => [
             'home' => [
@@ -26,7 +30,14 @@ return [
 
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class =>
+                InvokableFactory::class,
+        ],
+    ],
+
+    \MSBios\Assetic\Module::class => [
+        'paths' => [
+            __DIR__ . '/../../themes/default/public',
         ],
     ],
 ];

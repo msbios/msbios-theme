@@ -54,6 +54,12 @@ return [
 
     Module::class => [
 
+        // config cache enabled
+        'config_cache_enabled' => false,
+
+        // config cache key
+        'config_cache_key' => 'themes.config.cache',
+
         // default theme name if not set
         'default_theme_identifier' => 'default',
 

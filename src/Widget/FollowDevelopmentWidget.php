@@ -13,7 +13,9 @@ use MSBios\Widget\WidgetInterface;
  * Class FollowDevelopmentWidget
  * @package MSBios\Theme\Widget
  */
-class FollowDevelopmentWidget implements WidgetInterface, RendererWidgetAwareInterface
+class FollowDevelopmentWidget implements
+    WidgetInterface,
+    RendererWidgetAwareInterface
 {
     use RendererWidgetAwareTrait;
 

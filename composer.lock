@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0eb3c416b5d16e43f180c9d5e8b144c",
+    "content-hash": "95c266d2def1ab4550cbe19a5249dd29",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -309,6 +309,50 @@
                 "php"
             ],
             "time": "2017-09-13T07:21:16+00:00"
+        },
+        {
+            "name": "msbios/resolver",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/msbios/msbios-resolver.git",
+                "reference": "18af6b0092c6b8bdbd60efd79683e5b99cdfe5d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/msbios/msbios-resolver/zipball/18af6b0092c6b8bdbd60efd79683e5b99cdfe5d8",
+                "reference": "18af6b0092c6b8bdbd60efd79683e5b99cdfe5d8",
+                "shasum": ""
+            },
+            "require": {
+                "msbios/msbios": "^1.0"
+            },
+            "require-dev": {
+                "msbios/debug": "^1.0",
+                "msbios/test": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MSBios\\Resolver\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Judzhin Miles",
+                    "email": "info@msbios.com"
+                }
+            ],
+            "description": "MSBios Resolver",
+            "homepage": "https://github.com/msbios/msbios-resolver",
+            "keywords": [
+                "php"
+            ],
+            "time": "2017-11-13T10:32:53+00:00"
         },
         {
             "name": "msbios/stdlib",

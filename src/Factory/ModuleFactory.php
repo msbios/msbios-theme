@@ -20,10 +20,10 @@ class ModuleFactory implements FactoryInterface
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return Config
+     * @return mixed
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new Config($container->get('config')[Module::class]);
+        return $container->get('config')[Module::class];
     }
 }

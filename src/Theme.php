@@ -6,7 +6,6 @@
 namespace MSBios\Theme;
 
 use MSBios\Stdlib\Object;
-use Zend\Config\Config;
 
 /**
  * Class Theme
@@ -14,16 +13,16 @@ use Zend\Config\Config;
  */
 class Theme extends Object
 {
-    /** @var Config */
+    /** @var array */
     protected $options;
 
     /**
      * Theme constructor.
-     * @param Config $options
+     * @param array $options
      */
-    public function __construct(Config $options)
+    public function __construct(array $options)
     {
-        $this->addData($options->toArray());
+        $this->addData($options);
         $this->options = $options;
     }
 
