@@ -6,7 +6,6 @@
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Theme\Listener\ListenerOptions;
 use MSBios\Theme\Module;
 use MSBios\Theme\ResolverManager;
 use MSBios\Theme\ThemeManager;
@@ -26,11 +25,6 @@ class ThemeManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-
-        /** @var array $config */
-        $config = $container->get(Module::class);
-        $listenerOptions = new ListenerOptions($config['theme_listener_options']);
-
         return new ThemeManager(
             $container->get(ResolverManager::class),
             $container->get(Module::class)

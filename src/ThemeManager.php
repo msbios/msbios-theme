@@ -36,7 +36,6 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
      */
     public function __construct(ResolverManagerInterface $resolver, array $options)
     {
-
         $this->resolver = $resolver;
         $this->options = $options;
         $this->init();

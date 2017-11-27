@@ -26,6 +26,9 @@ class ListenerOptions extends AbstractOptions
     /** @var string */
     protected $configCacheKey;
 
+    /** @var string */
+    protected $cahceDir;
+
     /**
      * @return array
      */
@@ -72,5 +75,38 @@ class ListenerOptions extends AbstractOptions
     public function setConfigCacheKey($configCacheKey)
     {
         $this->configCacheKey = $configCacheKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCahceDir()
+    {
+        return $this->cahceDir;
+    }
+
+    /**
+     * @param string $cahceDir
+     */
+    public function setCahceDir($cahceDir)
+    {
+        $this->cahceDir = $cahceDir;
+    }
+
+    /**
+     * Get the path to the config cache
+     *
+     * Should this be an option, or should the dir option include the
+     * filename, or should it simply remain hard-coded? Thoughts?
+     *
+     * @return string
+     */
+    public function getConfigCacheFile()
+    {
+        if ($this->getConfigCacheKey()) {
+            return $this->getCacheDir() . '/theme-config-cache.' . $this->getConfigCacheKey().'.php';
+        }
+
+        return $this->getCacheDir() . '/theme-config-cache.php';
     }
 }

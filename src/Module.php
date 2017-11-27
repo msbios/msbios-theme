@@ -53,8 +53,6 @@ class Module implements
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $target->getServiceManager();
 
-        r($serviceManager->get(ThemeManager::class)); die();
-
         (new LazyListenerAggregate(
             $serviceManager->get(self::class)['listeners'], $serviceManager
         ))->attach($target->getEventManager());

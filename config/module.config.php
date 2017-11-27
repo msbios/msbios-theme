@@ -54,28 +54,14 @@ return [
 
     Module::class => [
 
-        //////////////////////////////////////
-        // TODO: for next version
-        'theme_listener_options' => [
-
-            // default global path form themes
-            'default_global_paths' => [
-                './themes'
-            ],
-
-            // config cache enabled
-            'config_cache_enabled' => false,
-
-            // config cache key
-            'config_cache_key' => 'themes.config.cache',
-        ],
-        //////////////////////////////////////
-
         // config cache enabled
         'config_cache_enabled' => false,
 
         // config cache key
         'config_cache_key' => 'themes.config.cache',
+
+        // cache dir
+        'cache_dir' => 'data/cache/',
 
         // default theme name if not set
         'default_theme_identifier' => 'default',
