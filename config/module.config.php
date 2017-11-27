@@ -37,9 +37,9 @@ return [
                 InvokableFactory::class,
 
             // Listeners
-            Listener\ThemeListener::class =>
+            Listener\RenderListener::class =>
                 InvokableFactory::class,
-            Listener\LayoutListener::class =>
+            Listener\DispatchListener::class =>
                 InvokableFactory::class,
         ],
     ],
@@ -53,6 +53,23 @@ return [
     ],
 
     Module::class => [
+
+        //////////////////////////////////////
+        // TODO: for next version
+        'theme_listener_options' => [
+
+            // default global path form themes
+            'default_global_paths' => [
+                './themes'
+            ],
+
+            // config cache enabled
+            'config_cache_enabled' => false,
+
+            // config cache key
+            'config_cache_key' => 'themes.config.cache',
+        ],
+        //////////////////////////////////////
 
         // config cache enabled
         'config_cache_enabled' => false,
@@ -88,22 +105,22 @@ return [
         // Module listeners
         'listeners' => [
             [
-                'listener' => Listener\ThemeListener::class,
+                'listener' => Listener\RenderListener::class,
                 'method' => 'onRender',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER,
                 'priority' => 1,
             ], [
-                'listener' => Listener\ThemeListener::class,
+                'listener' => Listener\RenderListener::class,
                 'method' => 'onRender',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
                 'priority' => 1,
             ], [
-                'listener' => Listener\LayoutListener::class,
+                'listener' => Listener\DispatchListener::class,
                 'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH,
                 'priority' => 1,
             ], [
-                'listener' => Listener\LayoutListener::class,
+                'listener' => Listener\DispatchListener::class,
                 'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
                 'priority' => 1,

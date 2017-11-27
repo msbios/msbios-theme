@@ -14,6 +14,8 @@ use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\ModuleManager\Feature\InitProviderInterface;
+use Zend\ModuleManager\ModuleManagerInterface;
 use Zend\Mvc\Application;
 use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -51,9 +53,10 @@ class Module implements
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $target->getServiceManager();
 
+        r($serviceManager->get(ThemeManager::class)); die();
+
         (new LazyListenerAggregate(
-            $serviceManager->get(self::class)['listeners'],
-            $serviceManager
+            $serviceManager->get(self::class)['listeners'], $serviceManager
         ))->attach($target->getEventManager());
     }
 

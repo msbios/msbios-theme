@@ -19,11 +19,20 @@ use Zend\View\Resolver\TemplateMapResolver;
 use Zend\View\Resolver\TemplatePathStack;
 
 /**
- * Class ThemeListener
+ * Class RenderListener
  * @package MSBios\Theme\Listener
  */
-class ThemeListener
+class RenderListener
 {
+    /** @var  AggregateResolver */
+    protected $viewResolver;
+
+    /** @var  AggregateResolver */
+    protected $mapResolver;
+
+    /** @var  AggregateResolver */
+    protected $pathStackResolver;
+
     /**
      * @param EventInterface $event
      */
