@@ -38,7 +38,13 @@
             </a>
         </div>
         <div class="collapse navbar-collapse">
-            
+            <?=
+            $this->navigation('Zend\Navigation\Default')
+                ->menu()
+                ->setUlClass('nav navbar-nav')
+                ->setPartial('partial/navbar-nav')
+                ->setMaxDepth(0)
+                ->render(); ?>
         </div>
     </div>
 </nav>

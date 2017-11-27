@@ -13,6 +13,10 @@ use Zend\EventManager\EventInterface;
 use Zend\I18n\Exception\InvalidArgumentException;
 use Zend\I18n\Translator\TranslatorInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Resolver\AggregateResolver;
+use Zend\View\Resolver\ResolverInterface;
+use Zend\View\Resolver\TemplateMapResolver;
+use Zend\View\Resolver\TemplatePathStack;
 
 /**
  * Class ThemeListener
@@ -34,14 +38,23 @@ class ThemeListener
             return;
         }
 
+        /** @var AggregateResolver $viewResolver */
+        $viewResolver = $serviceManager->get('ViewResolver');
+
+        /** @var AggregateResolver $themeResolver */
+        $themeResolver = new AggregateResolver;
+
         /**
          * We override the template resolver
          * Here we add the changes that need to be applied to the existing
          * template map
          */
         if ($templateMap = $theme->getTemplateMap()) {
-            $serviceManager->get('ViewTemplateMapResolver')
-                ->merge($templateMap);
+            $viewMapResolver = $serviceManager->get('ViewTemplateMapResolver');
+            $viewMapResolver->add($templateMap);
+
+            $mapResolver = new TemplateMapResolver($templateMap);
+            $themeResolver->attach($mapResolver);
         }
 
         /**
@@ -50,8 +63,13 @@ class ThemeListener
          * Otherwise we will use the ones provided earlier from the application
          */
         if ($templatePathStack = $theme->getTemplatePathStack()) {
-            $serviceManager->get('ViewTemplatePathStack')
-                ->addPaths($templatePathStack);
+            $viewResolverPathStack = $serviceManager->get('ViewTemplatePathStack');
+            $viewResolverPathStack->addPaths($templatePathStack);
+            $pathResolver = new TemplatePathStack(['script_paths' => $templatePathStack]);
+
+            $defaultPathStack = $serviceManager->get('ViewTemplatePathStack');
+            $pathResolver->setDefaultSuffix($defaultPathStack->getDefaultSuffix());
+            $themeResolver->attach($pathResolver);
         }
 
         /** @var array $templateTranslations */
@@ -65,6 +83,40 @@ class ThemeListener
         if ($widgetManager = $theme->getWidgetManager()) {
             $this->injectWidgetManaget(new Config($widgetManager), $serviceManager);
         }
+
+        ///**
+        // * We override the template resolver
+        // * Here we add the changes that need to be applied to the existing
+        // * template map
+        // */
+        //if ($templateMap = $theme->getTemplateMap()) {
+        //    $serviceManager->get('ViewTemplateMapResolver')
+        //        ->merge($templateMap);
+        //}
+        //
+        ///**
+        // * And we put our theme paths on top of the stack.
+        // * This way if there is template in our theme it will be taken and used
+        // * Otherwise we will use the ones provided earlier from the application
+        // */
+        //if ($templatePathStack = $theme->getTemplatePathStack()) {
+        //    $serviceManager->get('ViewTemplatePathStack')
+        //        ->addPaths($templatePathStack);
+        //}
+        //
+        ///** @var array $templateTranslations */
+        //if ($templateTranslations = $theme->getTranslationFilePatterns()) {
+        //    $this->injectTranslationFilePatterns(
+        //        $templateTranslations,
+        //        $serviceManager
+        //    );
+        //}
+        //
+        //if ($widgetManager = $theme->getWidgetManager()) {
+        //    $this->injectWidgetManaget(new Config($widgetManager), $serviceManager);
+        //}
+
+        $viewResolver->attach($themeResolver, 100);
     }
 
     /**

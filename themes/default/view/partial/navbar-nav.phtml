@@ -1,0 +1,16 @@
+<?php
+/**
+ * @access protected
+ * @author Judzhin Miles <judzhin[at]gns-it.com, info[woof-woof]msbios.com>
+ */
+?>
+<ul class="nav navbar-nav">
+    <?php /** @var \Zend\Navigation\Page\Mvc $page */ ?>
+    <?php foreach ($this->container as $page): ?>
+        <li class="<?php if ($page->isActive()): ?>active<?php endif; ?>">
+            <a href="<?= $page->getHref(); ?>" class="<?php if ($page->isActive()): ?>active<?php endif; ?>">
+                <?= $this->translate($page->getLabel()); ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>

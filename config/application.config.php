@@ -10,8 +10,10 @@ return [
     'modules' => [
         'Zend\I18n',
         'Zend\Router',
+        'Zend\Navigation',
 
         'MSBios\Assetic',
+        'MSBios\Navigation',
         'MSBios\Widget',
         'MSBios\Theme',
 
