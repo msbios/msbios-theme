@@ -93,39 +93,16 @@ class RenderListener
             $this->injectWidgetManaget(new Config($widgetManager), $serviceManager);
         }
 
-        ///**
-        // * We override the template resolver
-        // * Here we add the changes that need to be applied to the existing
-        // * template map
-        // */
-        //if ($templateMap = $theme->getTemplateMap()) {
-        //    $serviceManager->get('ViewTemplateMapResolver')
-        //        ->merge($templateMap);
-        //}
-        //
-        ///**
-        // * And we put our theme paths on top of the stack.
-        // * This way if there is template in our theme it will be taken and used
-        // * Otherwise we will use the ones provided earlier from the application
-        // */
-        //if ($templatePathStack = $theme->getTemplatePathStack()) {
-        //    $serviceManager->get('ViewTemplatePathStack')
-        //        ->addPaths($templatePathStack);
-        //}
-        //
-        ///** @var array $templateTranslations */
-        //if ($templateTranslations = $theme->getTranslationFilePatterns()) {
-        //    $this->injectTranslationFilePatterns(
-        //        $templateTranslations,
-        //        $serviceManager
-        //    );
-        //}
-        //
-        //if ($widgetManager = $theme->getWidgetManager()) {
-        //    $this->injectWidgetManaget(new Config($widgetManager), $serviceManager);
-        //}
-
         $viewResolver->attach($themeResolver, 100);
+
+        /** @var \Zend\View\Renderer\PhpRenderer $phpRenderer */
+        $phpRenderer = $serviceManager->get('Zend\View\Renderer\PhpRenderer');
+        $phpRenderer->setResolver($viewResolver);
+
+        // TODO: Fix???
+        $serviceManager->get('ViewHelperManager')
+            ->get('partial')
+            ->setView($phpRenderer);
     }
 
     /**

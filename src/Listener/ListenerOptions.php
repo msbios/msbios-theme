@@ -8,7 +8,6 @@
 
 namespace MSBios\Theme\Listener;
 
-
 use Zend\Stdlib\AbstractOptions;
 
 /**
