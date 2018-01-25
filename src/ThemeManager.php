@@ -73,8 +73,14 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
                         ]);
 
                         if (file_exists($filename)) {
+
                             /** @var array $config */
                             $config = require_once $filename;
+
+                            if (! is_array($config) || ! isset($config['identifier'])) {
+                                continue;
+                            }
+
                             $fromFiles[$config['identifier']] = $config;
                         }
                     }

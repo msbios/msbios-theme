@@ -6,18 +6,13 @@
 namespace MSBios\Theme;
 
 use MSBios\ModuleInterface;
-use Zend\Config\Config;
 use Zend\EventManager\EventInterface;
-use Zend\EventManager\EventManager;
 use Zend\EventManager\LazyListenerAggregate;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
-use Zend\ModuleManager\Feature\InitProviderInterface;
-use Zend\ModuleManager\ModuleManagerInterface;
 use Zend\Mvc\Application;
-use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -32,7 +27,7 @@ class Module implements
     AutoloaderProviderInterface
 {
     /** @const VERSIOn */
-    const VERSION = '1.0.7';
+    const VERSION = '1.0.8';
 
     /**
      * @return mixed
