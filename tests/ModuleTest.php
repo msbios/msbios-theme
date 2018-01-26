@@ -17,8 +17,16 @@ class ModuleTest extends TestCase
     /**
      *
      */
+    public function testGetConfig()
+    {
+        $this->assertInternalType('array', (new Module)->getConfig());
+    }
+
+    /**
+     *
+     */
     public function testGetAutoloaderConfig()
     {
-        $this->assertInternalType('array', (new Module())->getAutoloaderConfig());
+        $this->assertInternalType('array', (new Module)->getAutoloaderConfig());
     }
 }

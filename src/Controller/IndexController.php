@@ -35,6 +35,9 @@ class IndexController extends AbstractActionController
      */
     public function viewAction()
     {
-        return new ViewModel;
+        return new ViewModel([
+            'id' => $this->params()->fromRoute('id'),
+            'slug' => $this->params()->fromRoute('slug')
+        ]);
     }
 }

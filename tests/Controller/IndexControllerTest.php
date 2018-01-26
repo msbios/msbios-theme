@@ -3,14 +3,15 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
-namespace MSBiosTest\Controller;
+namespace MSBiosTest\Theme\Controller;
 
+use MSBios\Theme\Controller\IndexController;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**
  * Class IndexControllerTest
- * @package MSBiosTest\Controller
+ * @package MSBiosTest\Theme\Controller
  */
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
@@ -34,9 +35,9 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/', 'GET');
         $this->assertResponseStatusCode(200);
-        //$this->assertModuleName('application');
-        //$this->assertControllerName(IndexController::class); // as specified in router's controller name alias
-        //$this->assertControllerClass('IndexController');
+        $this->assertModuleName('msbios');
+        $this->assertControllerName(IndexController::class); // as specified in router's controller name alias
+        $this->assertControllerClass('IndexController');
         $this->assertMatchedRouteName('home');
     }
 
@@ -44,6 +45,32 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/', 'GET');
         $this->assertQuery('.container .jumbotron');
+    }
+
+    public function testBlogActionCanBeAccessed()
+    {
+        $this->dispatch('/blog', 'GET');
+        $this->assertResponseStatusCode(200);
+        $this->assertModuleName('msbios');
+        $this->assertControllerName(IndexController::class); // as specified in router's controller name alias
+        $this->assertControllerClass('IndexController');
+        $this->assertMatchedRouteName('home/blog');
+    }
+
+    public function testBlogActionViewModelTemplateRenderedWithinLayout()
+    {
+        $this->dispatch('/blog', 'GET');
+        $this->assertQuery('.h2');
+    }
+
+    public function testViewActionCanBeAccessed()
+    {
+        $this->dispatch('/blog/1-some-slug.html', 'GET');
+        $this->assertResponseStatusCode(200);
+        $this->assertModuleName('msbios');
+        $this->assertControllerName(IndexController::class); // as specified in router's controller name alias
+        $this->assertControllerClass('IndexController');
+        $this->assertMatchedRouteName('home/blog/view');
     }
 
     public function testInvalidRouteDoesNotCrash()
