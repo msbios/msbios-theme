@@ -28,7 +28,7 @@ class Module implements
     AutoloaderProviderInterface
 {
     /** @const VERSION */
-    const VERSION = '1.0.10';
+    const VERSION = '1.0.11';
 
     /**
      * @return array
@@ -59,7 +59,7 @@ class Module implements
             $serviceManager
         ))->attach($target->getEventManager());
 
-        $serviceManager->get('ThemeManager')->loadThemes();
+        // $serviceManager->get('ThemeManager')->loadThemes();
     }
 
     /**
