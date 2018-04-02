@@ -23,10 +23,6 @@ return [
             Module::class =>
                 Factory\ModuleFactory::class,
 
-            // Managers
-            ThemeManager::class =>
-                Factory\ThemeManagerFactory::class,
-
             ResolverManager::class =>
                 Factory\ResolverManagerFactory::class,
 
@@ -145,4 +141,5 @@ return [
             ]
         ],
     ],
+
 ];

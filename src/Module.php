@@ -14,6 +14,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\Application;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Stdlib\ArrayUtils;
 
 /**
  * Class Module
@@ -30,11 +31,16 @@ class Module implements
     const VERSION = '1.0.10';
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getConfig()
     {
-        return include __DIR__ . '/../config/module.config.php';
+        return ArrayUtils::merge(
+            include __DIR__ . '/../config/module.config.php',
+            [
+                'service_manager' => (new ConfigProvider)->getDependencyConfig()
+            ]
+        );
     }
 
     /**
@@ -52,6 +58,8 @@ class Module implements
             $serviceManager->get(self::class)['listeners'],
             $serviceManager
         ))->attach($target->getEventManager());
+
+        $serviceManager->get('ThemeManager')->loadThemes();
     }
 
     /**

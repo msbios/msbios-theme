@@ -30,9 +30,9 @@
     "msbios/i18n": "^1.0"
   },
   "require-dev": {
+    "msbios/navigation": "^1.0",
     "msbios/test": "^1.0",
-    "msbios/debug": "^1.0",
-    "msbios/navigation": "^1.0"
+    "msbios/debug": "^1.0"
   },
   "scripts": {
     "cs-check": "phpcs",
@@ -43,16 +43,6 @@
     ],
     "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
     "upload-coverage": "coveralls -v",
-    "themes": "cd public && ln -s ../themes/default/public default",
-    "cache":[
-      "rm -Rf data/cache/*.php",
-      "rm -Rf data/cache/*.dat",
-      "rm -Rf data/logs/*.log"
-    ],
-    "deploy":[
-      "@themes",
-      "@cache"
-    ],
     "serve": "php -S 0.0.0.0:3107 -t public index.php",
     "commit": "git add . && git commit -a -m \"Lazy Composer Commiter\" && git push"
   },

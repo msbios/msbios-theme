@@ -7,6 +7,7 @@
 namespace MSBios\Theme;
 
 use MSBios\Theme\Exception\InvalidArgumentException;
+use Zend\EventManager\EventManagerInterface;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\InitializableInterface;
 
@@ -17,8 +18,11 @@ use Zend\Stdlib\InitializableInterface;
  */
 class ThemeManager implements ThemeManagerInterface, InitializableInterface
 {
-    /** @var  ResolverManagerInterface */
-    protected $resolver;
+    /** @var ResolverManagerInterface */
+    protected $resolverManager;
+
+    /** @var EventManagerInterface */
+    protected $eventManager;
 
     /** @var array */
     protected $options;
@@ -31,12 +35,19 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
 
     /**
      * ThemeManager constructor.
-     * @param ResolverManagerInterface $resolver
+     * @param array $themes
+     * @param EventManagerInterface $eventManager
+     * @param ResolverManagerInterface $resolverManager
      * @param array $options
      */
-    public function __construct(ResolverManagerInterface $resolver, array $options)
-    {
-        $this->resolver = $resolver;
+    public function __construct(
+        array $themes,
+        EventManagerInterface $eventManager,
+        ResolverManagerInterface $resolverManager,
+        array $options
+    ) {
+        $this->eventManager = $eventManager;
+        $this->resolverManager = $resolverManager;
         $this->options = $options;
         $this->init();
     }
@@ -178,7 +189,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     public function current()
     {
         /** @var string $identifier */
-        $identifier = $this->resolver->getIdentifier();
+        $identifier = $this->resolverManager->getIdentifier();
 
         /** @var Theme $theme */
         $theme = $this->getTheme($identifier);
@@ -200,5 +211,14 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
         return $this->getTheme(
             $this->options['default_theme_identifier']
         );
+    }
+
+    /**
+     *
+     */
+    public function loadThemes()
+    {
+        echo __METHOD__;
+        die();
     }
 }

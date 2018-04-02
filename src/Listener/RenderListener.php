@@ -14,7 +14,6 @@ use Zend\I18n\Exception\InvalidArgumentException;
 use Zend\I18n\Translator\TranslatorInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Resolver\AggregateResolver;
-use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Resolver\TemplateMapResolver;
 use Zend\View\Resolver\TemplatePathStack;
 
