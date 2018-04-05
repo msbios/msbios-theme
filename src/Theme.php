@@ -5,13 +5,13 @@
  */
 namespace MSBios\Theme;
 
-use MSBios\Stdlib\Object;
+use MSBios\Stdlib\AbstractObject;
 
 /**
  * Class Theme
  * @package MSBios\Theme
  */
-class Theme extends Object
+class Theme extends AbstractObject
 {
     /** @var array */
     protected $options;
