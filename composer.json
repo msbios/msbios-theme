@@ -27,7 +27,8 @@
     "msbios/widget": "^1.0",
     "msbios/assetic": "^1.0",
     "msbios/stdlib": "^1.0",
-    "msbios/i18n": "^1.0"
+    "msbios/i18n": "^1.0",
+    "msbios/resolver": "^1.0"
   },
   "require-dev": {
     "zendframework/zend-mvc": "^3.1",

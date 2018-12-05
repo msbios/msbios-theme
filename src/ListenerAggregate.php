@@ -3,6 +3,7 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Theme;
 
 use MSBios\Theme\Exception\InvalidArgumentException;
@@ -24,21 +25,20 @@ use Zend\View\Resolver\TemplatePathStack;
  */
 class ListenerAggregate extends AbstractListenerAggregate
 {
-
     /** @const IDENTIFIER */
     const IDENTIFIER = 'layout_identifier';
 
-    // /** @var ThemeManagerInterface */
-    // protected $themeManager;
+    ///** @var ThemeManagerInterface */
+    //protected $themeManager;
     //
-    // /**
-    //  * ListenerAggregate constructor.
-    //  * @param ThemeManagerInterface $themeManager
-    //  */
-    // public function __construct(ThemeManagerInterface $themeManager)
-    // {
-    //     $this->themeManager = $themeManager;
-    // }
+    ///**
+    // * ListenerAggregate constructor.
+    // * @param ThemeManagerInterface $themeManager
+    // */
+    //public function __construct(ThemeManagerInterface $themeManager)
+    //{
+    //    $this->themeManager = $themeManager;
+    //}
 
     /**
      * @inheritdoc
@@ -48,9 +48,6 @@ class ListenerAggregate extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        // $this->listeners[] = $events
-        //     ->attach(MvcEvent::EVENT_BOOTSTRAP, [$this, 'onBootstrap'], $priority);
-
         $this->listeners[] = $events
             ->attach(MvcEvent::EVENT_RENDER, [$this, 'onRender'], $priority);
         $this->listeners[] = $events
@@ -71,7 +68,7 @@ class ListenerAggregate extends AbstractListenerAggregate
             ->getServiceManager();
 
         /** @var Theme $theme */
-        if (! $theme = $serviceManager->get(ThemeManager::class)->current()) {
+        if (!$theme = $serviceManager->get(ThemeManager::class)->current()) {
             return;
         }
 
@@ -146,7 +143,7 @@ class ListenerAggregate extends AbstractListenerAggregate
             /** @var array $requiredKeys */
             $requiredKeys = ['type', 'base_dir', 'pattern'];
             foreach ($requiredKeys as $key) {
-                if (! isset($pattern[$key])) {
+                if (!isset($pattern[$key])) {
                     throw new InvalidArgumentException(
                         "'{$key}' is missing for translation pattern options"
                     );
@@ -189,7 +186,7 @@ class ListenerAggregate extends AbstractListenerAggregate
         /** @var RouteMatch $routeMatch */
         $routeMatch = $event->getRouteMatch();
 
-        if (! $routeMatch instanceof RouteMatch) {
+        if (!$routeMatch instanceof RouteMatch) {
             return;
         }
 
@@ -198,7 +195,7 @@ class ListenerAggregate extends AbstractListenerAggregate
 
             /** @var ModelInterface $viewModel */
             $viewModel = $event->getViewModel();
-            if (! $viewModel instanceof ModelInterface) {
+            if (!$viewModel instanceof ModelInterface) {
                 return;
             }
 
