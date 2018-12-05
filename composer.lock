@@ -437,16 +437,16 @@
         },
         {
             "name": "msbios/resolver",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msbios/msbios-resolver.git",
-                "reference": "c9ff7692b6403c35e70e65e2377d87d92b086eab"
+                "reference": "1297753c77274bf3e96da39acb762ed5fb28dba4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msbios/msbios-resolver/zipball/c9ff7692b6403c35e70e65e2377d87d92b086eab",
-                "reference": "c9ff7692b6403c35e70e65e2377d87d92b086eab",
+                "url": "https://api.github.com/repos/msbios/msbios-resolver/zipball/1297753c77274bf3e96da39acb762ed5fb28dba4",
+                "reference": "1297753c77274bf3e96da39acb762ed5fb28dba4",
                 "shasum": ""
             },
             "require": {
@@ -477,7 +477,7 @@
             "keywords": [
                 "php"
             ],
-            "time": "2018-12-05T12:13:47+00:00"
+            "time": "2018-12-05T14:11:00+00:00"
         },
         {
             "name": "msbios/stdlib",

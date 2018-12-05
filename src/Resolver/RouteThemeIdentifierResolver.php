@@ -27,10 +27,10 @@ class RouteThemeIdentifierResolver implements MvcEventAwareInterface, ResolverIn
     }
 
     /**
-     * @param array ...$arguments
-     * @return mixed
+     * @param mixed ...$arguments
+     * @return bool|mixed
      */
-    public function resolve(array ...$arguments)
+    public function resolve(...$arguments)
     {
         /** @var RouteMatch $routeMatch */
         $routeMatch = $this->event

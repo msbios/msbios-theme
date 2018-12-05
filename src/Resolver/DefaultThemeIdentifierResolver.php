@@ -27,10 +27,10 @@ class DefaultThemeIdentifierResolver implements OptionsAwareInterface, ResolverI
     }
 
     /**
-     * @param array ...$arguments
+     * @param mixed ...$arguments
      * @return mixed
      */
-    public function resolve(array ...$arguments)
+    public function resolve(...$arguments)
     {
         return $this->options['default_theme_identifier'];
     }

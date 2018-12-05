@@ -29,7 +29,7 @@ class ResolverManager extends AbstractResolverManager
      * @param array ...$arguments
      * @return mixed
      */
-    public function resolve(array ...$arguments)
+    public function resolve(...$arguments)
     {
         if (count($this->queue)) {
 
