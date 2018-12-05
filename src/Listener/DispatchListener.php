@@ -7,7 +7,6 @@
 namespace MSBios\Theme\Listener;
 
 use Zend\EventManager\EventInterface;
-use Zend\Mvc\Application;
 use Zend\Router\RouteMatch;
 use Zend\View\Model\ModelInterface;
 

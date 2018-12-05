@@ -30,6 +30,7 @@
     "msbios/i18n": "^1.0"
   },
   "require-dev": {
+    "zendframework/zend-mvc": "^3.1",
     "msbios/navigation": "^1.0",
     "msbios/test": "^1.0",
     "msbios/debug": "^1.0"
@@ -43,7 +44,7 @@
     ],
     "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
     "upload-coverage": "coveralls -v",
-    "serve": "php -S 0.0.0.0:3107 -t public index.php",
+    "serve": "php -S 0.0.0.0:3107 -t public public/index.php -d display_errors",
     "commit": "git add . && git commit -a -m \"Lazy Composer Commiter\" && git push"
   },
   "extra": {

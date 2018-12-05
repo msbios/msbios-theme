@@ -6,7 +6,6 @@
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Theme\Listener\ListenerOptions;
 use MSBios\Theme\Module;
 use MSBios\Theme\ResolverManager;
 use MSBios\Theme\ThemeManager;

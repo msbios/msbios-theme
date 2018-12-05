@@ -1,29 +1,31 @@
 <?php
 /**
  * @access protected
- * @author Jduzhin Miles <info[woof-woof]msbios.com>
+ * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Theme\Module;
-use Zend\Config\Config;
+use MSBios\Theme\ThemeManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class ModuleFactory
+ * Class ThemeManageableFactory
  * @package MSBios\Theme\Factory
  */
-class ModuleFactory implements FactoryInterface
+class ThemeManageableFactory implements FactoryInterface
 {
     /**
+     * @inheritdoc
+     *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return mixed
+     * @return mixed|object
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return $container->get('config')[Module::class];
+        return new $requestedName($container->get(ThemeManager::class));
     }
 }

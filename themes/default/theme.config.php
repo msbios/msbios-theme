@@ -9,18 +9,23 @@ return [
     'description' => 'Default Theme Description',
 
     'template_map' => [
+        // ...
     ],
 
     'template_path_stack' => [
+        // ...
     ],
 
     'translation_file_patterns' => [
+        // ...
     ],
 
     'widget_manager' => [
         'template_map' => [
+            // ...
         ],
         'template_path_stack' => [
+            // ...
         ],
     ],
 ];

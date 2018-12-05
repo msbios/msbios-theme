@@ -6,6 +6,7 @@
 
 namespace MSBios\Theme;
 
+use MSBios\Factory\ModuleFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -21,7 +22,7 @@ return [
         'factories' => [
 
             Module::class =>
-                Factory\ModuleFactory::class,
+                ModuleFactory::class,
 
             ResolverManager::class =>
                 Factory\ResolverManagerFactory::class,
@@ -37,6 +38,10 @@ return [
                 InvokableFactory::class,
             Listener\DispatchListener::class =>
                 InvokableFactory::class,
+
+            // Listener
+            ListenerAggregate::class =>
+                Factory\ThemeManageableFactory::class
         ],
     ],
 
@@ -96,7 +101,8 @@ return [
                 'method' => 'onRender',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
                 'priority' => 1,
-            ], [
+            ],
+            [
                 'listener' => Listener\DispatchListener::class,
                 'method' => 'onDispatch',
                 'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH,
@@ -116,6 +122,7 @@ return [
                 'description' => 'Default Theme Description',
 
                 'template_map' => [
+                    // ...
                 ],
 
                 'template_path_stack' => [
@@ -142,4 +149,7 @@ return [
         ],
     ],
 
+    'listeners' => [
+        // ListenerAggregate::class
+    ]
 ];

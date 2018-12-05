@@ -3,33 +3,48 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+namespace MSBios\Theme;
 
-namespace MSBios\Theme\Listener;
-
-use MSBios\Theme\Theme;
-use MSBios\Theme\ThemeManager;
+use MSBios\Theme\Exception\InvalidArgumentException;
+use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventInterface;
-use Zend\I18n\Exception\InvalidArgumentException;
+use Zend\EventManager\EventManagerInterface;
 use Zend\I18n\Translator\TranslatorInterface;
+use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Resolver\AggregateResolver;
 use Zend\View\Resolver\TemplateMapResolver;
 use Zend\View\Resolver\TemplatePathStack;
 
 /**
- * Class RenderListener
- * @package MSBios\Theme\Listener
+ * Class ListenerAggregate
+ * @package MSBios\Theme
  */
-class RenderListener
+class ListenerAggregate extends AbstractListenerAggregate
 {
-    /** @var  AggregateResolver */
-    protected $viewResolver;
+    /** @var ThemeManagerInterface */
+    protected $themeManager;
 
-    /** @var  AggregateResolver */
-    protected $mapResolver;
+    // /**
+    //  * ListenerAggregate constructor.
+    //  * @param ThemeManagerInterface $themeManager
+    //  */
+    // public function __construct(ThemeManagerInterface $themeManager)
+    // {
+    //     $this->themeManager = $themeManager;
+    // }
 
-    /** @var  AggregateResolver */
-    protected $pathStackResolver;
+    /**
+     * @inheritdoc
+     *
+     * @param EventManagerInterface $events
+     * @param int $priority
+     */
+    public function attach(EventManagerInterface $events, $priority = 1)
+    {
+        $this->listeners[] = $events
+            ->attach(MvcEvent::EVENT_RENDER, [$this, 'onRender'], $priority);
+    }
 
     /**
      * @param EventInterface $event
@@ -41,7 +56,7 @@ class RenderListener
             ->getServiceManager();
 
         /** @var Theme $theme */
-        if (! $theme = $serviceManager->get(ThemeManager::class)->current()) {
+        if (! $theme = $this->themeManager->current()) {
             return;
         }
 
@@ -107,10 +122,7 @@ class RenderListener
      * @param $templateTranslations
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectTranslationFilePatterns(
-        $templateTranslations,
-        ServiceLocatorInterface $serviceManager
-    ) {
+    protected function injectTranslationFilePatterns($templateTranslations, ServiceLocatorInterface $serviceManager) {
 
         /** @var array $pattern */
         foreach ($templateTranslations as $pattern) {
