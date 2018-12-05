@@ -5,44 +5,31 @@
  */
 namespace MSBios\Theme;
 
-use MSBios\Theme\Resolver\ResolverInterface;
-use Zend\Stdlib\PriorityQueue;
+use MSBios\Resolver\AbstractResolverManager;
+use MSBios\Resolver\ResolverInterface;
 
 /**
  * Class ResolverManager
  * @package MSBios\Theme
  */
-class ResolverManager implements ResolverManagerInterface
+class ResolverManager extends AbstractResolverManager
 {
-    /** @var PriorityQueue|ResolverInterface[] */
-    protected $queue;
-
     /** @var ResolverInterface */
     protected $lastStrategyFound;
 
     /**
-     * AggregateResolver constructor.
+     * <code>
+     *     foreach ($this->queue as $resolver) {
+     *         if ($resource = $resolver->resolve($arguments)) {
+     *             return $resource;
+     *         }
+     *     }
+     * </code>
+     *
+     * @param array ...$arguments
+     * @return mixed
      */
-    public function __construct()
-    {
-        $this->queue = new PriorityQueue;
-    }
-
-    /**
-     * @param ResolverInterface $resolver
-     * @param int $priority
-     * @return $this
-     */
-    public function attach(ResolverInterface $resolver, $priority = 1)
-    {
-        $this->queue->insert($resolver, $priority);
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getIdentifier()
+    public function resolve(array ...$arguments)
     {
         if (count($this->queue)) {
 
@@ -50,7 +37,7 @@ class ResolverManager implements ResolverManagerInterface
             foreach ($this->queue as $detector) {
 
                 /** @var string $identifier */
-                $identifier = $detector->getIdentifier();
+                $identifier = $detector->resolve($arguments);
 
                 if (empty($identifier)) {
                     // No resource found; try next resolver

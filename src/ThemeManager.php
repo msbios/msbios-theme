@@ -5,6 +5,7 @@
  */
 namespace MSBios\Theme;
 
+use MSBios\Resolver\ResolverManagerInterface;
 use MSBios\Theme\Exception\InvalidArgumentException;
 use Zend\Stdlib\ArrayUtils;
 
@@ -29,6 +30,7 @@ class ThemeManager implements ThemeManagerInterface
 
     /**
      * ThemeManager constructor.
+     *
      * @param ResolverManagerInterface $resolverManager
      * @param array $options
      */
@@ -187,7 +189,7 @@ class ThemeManager implements ThemeManagerInterface
         $this->initialize();
 
         /** @var string $identifier */
-        $identifier = $this->resolverManager->getIdentifier();
+        $identifier = $this->resolverManager->resolve();
 
         if (! $theme = $this->getTheme($identifier)) {
             return $theme;

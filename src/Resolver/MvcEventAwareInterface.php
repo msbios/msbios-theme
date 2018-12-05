@@ -14,8 +14,8 @@ use Zend\Mvc\MvcEvent;
 interface MvcEventAwareInterface
 {
     /**
-     * @param MvcEvent $e
+     * @param MvcEvent $event
      * @return mixed
      */
-    public function setMvcEvent(MvcEvent $e);
+    public function setMvcEvent(MvcEvent $event);
 }

@@ -6,13 +6,13 @@
 namespace MSBios\Theme\Factory;
 
 use Interop\Container\ContainerInterface;
+use MSBios\Resolver\ResolverInterface;
+use MSBios\Resolver\ResolverManagerInterface;
 use MSBios\Theme\Exception\RuntimeException;
 use MSBios\Theme\Module;
 use MSBios\Theme\Resolver\OptionsAwareInterface;
 use MSBios\Theme\Resolver\MvcEventAwareInterface;
-use MSBios\Theme\Resolver\ResolverInterface;
 use MSBios\Theme\ResolverManager;
-use MSBios\Theme\ResolverManagerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**

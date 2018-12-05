@@ -12,8 +12,8 @@ namespace MSBios\Theme\Resolver;
 interface OptionsAwareInterface
 {
     /**
-     * @param array $config
+     * @param array $options
      * @return mixed
      */
-    public function setOptions(array $config);
+    public function setOptions(array $options);
 }

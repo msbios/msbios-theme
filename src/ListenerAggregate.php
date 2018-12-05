@@ -68,7 +68,7 @@ class ListenerAggregate extends AbstractListenerAggregate
             ->getServiceManager();
 
         /** @var Theme $theme */
-        if (!$theme = $serviceManager->get(ThemeManager::class)->current()) {
+        if (! $theme = $serviceManager->get(ThemeManager::class)->current()) {
             return;
         }
 
@@ -143,7 +143,7 @@ class ListenerAggregate extends AbstractListenerAggregate
             /** @var array $requiredKeys */
             $requiredKeys = ['type', 'base_dir', 'pattern'];
             foreach ($requiredKeys as $key) {
-                if (!isset($pattern[$key])) {
+                if (! isset($pattern[$key])) {
                     throw new InvalidArgumentException(
                         "'{$key}' is missing for translation pattern options"
                     );
@@ -186,7 +186,7 @@ class ListenerAggregate extends AbstractListenerAggregate
         /** @var RouteMatch $routeMatch */
         $routeMatch = $event->getRouteMatch();
 
-        if (!$routeMatch instanceof RouteMatch) {
+        if (! $routeMatch instanceof RouteMatch) {
             return;
         }
 
@@ -195,7 +195,7 @@ class ListenerAggregate extends AbstractListenerAggregate
 
             /** @var ModelInterface $viewModel */
             $viewModel = $event->getViewModel();
-            if (!$viewModel instanceof ModelInterface) {
+            if (! $viewModel instanceof ModelInterface) {
                 return;
             }
 

@@ -5,6 +5,8 @@
  */
 namespace MSBios\Theme\Resolver;
 
+use MSBios\Resolver\ResolverInterface;
+
 /**
  * Class DefaultThemeIdentifierResolver
  * @package MSBios\Theme\Resolver
@@ -15,19 +17,20 @@ class DefaultThemeIdentifierResolver implements OptionsAwareInterface, ResolverI
     protected $options;
 
     /**
-     * @param array $config
+     * @param array $options
      * @return $this
      */
-    public function setOptions(array $config)
+    public function setOptions(array $options)
     {
-        $this->options = $config;
+        $this->options = $options;
         return $this;
     }
 
     /**
-     * @return bool
+     * @param array ...$arguments
+     * @return mixed
      */
-    public function getIdentifier()
+    public function resolve(array ...$arguments)
     {
         return $this->options['default_theme_identifier'];
     }

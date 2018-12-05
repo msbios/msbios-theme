@@ -5,6 +5,7 @@
  */
 namespace MSBios\Theme\Resolver;
 
+use MSBios\Resolver\ResolverInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\Router\RouteMatch;
 
@@ -18,17 +19,18 @@ class RouteThemeIdentifierResolver implements MvcEventAwareInterface, ResolverIn
     protected $event;
 
     /**
-     * @param MvcEvent $e
+     * @param MvcEvent $event
      */
-    public function setMvcEvent(MvcEvent $e)
+    public function setMvcEvent(MvcEvent $event)
     {
-        $this->event = $e;
+        $this->event = $event;
     }
 
     /**
-     * @return bool|mixed
+     * @param array ...$arguments
+     * @return mixed
      */
-    public function getIdentifier()
+    public function resolve(array ...$arguments)
     {
         /** @var RouteMatch $routeMatch */
         $routeMatch = $this->event
