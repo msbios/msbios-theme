@@ -191,7 +191,8 @@ class ThemeManager implements ThemeManagerInterface
         /** @var string $identifier */
         $identifier = $this->resolverManager->resolve();
 
-        if (! $theme = $this->getTheme($identifier)) {
+        /** @var Theme $theme */
+        if ($theme = $this->getTheme($identifier)) {
             return $theme;
         }
 

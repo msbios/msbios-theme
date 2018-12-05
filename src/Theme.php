@@ -11,19 +11,15 @@ use MSBios\Stdlib\AbstractObject;
  * Class Theme
  * @package MSBios\Theme
  */
-class Theme extends AbstractObject
+class Theme extends AbstractObject implements ThemeInterface
 {
-    /** @var array */
-    protected $options;
-
     /**
      * Theme constructor.
      * @param array $options
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->addData($options);
-        $this->options = $options;
     }
 
     /**
