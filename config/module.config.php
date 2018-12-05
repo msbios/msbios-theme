@@ -33,15 +33,9 @@ return [
             Resolver\RouteThemeIdentifierResolver::class =>
                 InvokableFactory::class,
 
-            // Listeners
-            Listener\RenderListener::class =>
-                InvokableFactory::class,
-            Listener\DispatchListener::class =>
-                InvokableFactory::class,
-
             // Listener
             ListenerAggregate::class =>
-                Factory\ThemeManageableFactory::class
+                InvokableFactory::class
         ],
     ],
 
@@ -89,32 +83,6 @@ return [
             Resolver\RouteLayoutIdentifierResolver::class => -100700
         ],
 
-        // Module listeners
-        'listeners' => [
-            [
-                'listener' => Listener\RenderListener::class,
-                'method' => 'onRender',
-                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER,
-                'priority' => 1,
-            ], [
-                'listener' => Listener\RenderListener::class,
-                'method' => 'onRender',
-                'event' => \Zend\Mvc\MvcEvent::EVENT_RENDER_ERROR,
-                'priority' => 1,
-            ],
-            [
-                'listener' => Listener\DispatchListener::class,
-                'method' => 'onDispatch',
-                'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH,
-                'priority' => 1,
-            ], [
-                'listener' => Listener\DispatchListener::class,
-                'method' => 'onDispatch',
-                'event' => \Zend\Mvc\MvcEvent::EVENT_DISPATCH_ERROR,
-                'priority' => 1,
-            ]
-        ],
-
         'themes' => [
             'default' => [
                 'identifier' => 'default',
@@ -150,6 +118,6 @@ return [
     ],
 
     'listeners' => [
-        // ListenerAggregate::class
+        ListenerAggregate::class
     ]
 ];

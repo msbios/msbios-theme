@@ -3,26 +3,20 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
-
 namespace MSBios\Theme;
 
 use MSBios\Theme\Exception\InvalidArgumentException;
-use Zend\EventManager\EventManagerInterface;
 use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\InitializableInterface;
 
 /**
  * Class ThemeManager
  * @package MSBios\Theme
  * @link https://github.com/gregorius90/zf2-themes
  */
-class ThemeManager implements ThemeManagerInterface, InitializableInterface
+class ThemeManager implements ThemeManagerInterface
 {
     /** @var ResolverManagerInterface */
     protected $resolverManager;
-
-    /** @var EventManagerInterface */
-    protected $eventManager;
 
     /** @var array */
     protected $options;
@@ -30,26 +24,19 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     /** @var array */
     protected $themes = [];
 
-    /** @var Theme */
-    protected $current;
+    /** @var bool */
+    protected $isInitialized = false;
 
     /**
      * ThemeManager constructor.
-     * @param array $themes
-     * @param EventManagerInterface $eventManager
      * @param ResolverManagerInterface $resolverManager
      * @param array $options
      */
-    public function __construct(
-        array $themes,
-        EventManagerInterface $eventManager,
-        ResolverManagerInterface $resolverManager,
-        array $options
-    ) {
-        $this->eventManager = $eventManager;
+    public function __construct(ResolverManagerInterface $resolverManager, array $options = [])
+    {
         $this->resolverManager = $resolverManager;
         $this->options = $options;
-        $this->init();
+        $this->initialize();
     }
 
     /**
@@ -57,8 +44,12 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
      *
      * @return void
      */
-    public function init()
+    public function initialize()
     {
+        if ($this->isInitialized) {
+            return;
+        }
+
         /** @var array $fromFiles */
         $fromFiles = [];
 
@@ -107,8 +98,10 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
 
         /** @var array $theme */
         foreach ($themes as $theme) {
-            $this->addTheme(new Theme($theme));
+            $this->addTheme(Theme::factory($theme));
         }
+
+        $this->isInitialized = true;
     }
 
     /**
@@ -136,7 +129,7 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     public function addTheme(Theme $theme)
     {
         if (! $this->hasTheme($theme)) {
-            $this->themes[] = $theme;
+            $this->themes[$theme->getIdentifier()] = $theme;
         }
 
         return $this;
@@ -148,7 +141,6 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
      */
     public function removeTheme($identityOrInstance)
     {
-
         if (! $this->hasTheme($identityOrInstance)) {
             return false;
         }
@@ -169,10 +161,14 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
 
     /**
      * @param $identifier
-     * @return Theme|null
+     * @return mixed|Theme|null
      */
     public function getTheme($identifier)
     {
+        if (isset($this->themes[$identifier])) {
+            return $this->themes[$identifier];
+        }
+
         /** @var Theme $theme */
         foreach ($this->themes as $theme) {
             if ($theme->getIdentifier() == $identifier) {
@@ -184,23 +180,20 @@ class ThemeManager implements ThemeManagerInterface, InitializableInterface
     }
 
     /**
-     * @return Theme|null
+     * @return mixed|Theme|null
      */
     public function current()
     {
+        $this->initialize();
+
         /** @var string $identifier */
         $identifier = $this->resolverManager->getIdentifier();
 
-        /** @var Theme $theme */
-        $theme = $this->getTheme($identifier);
-
-        if (! $theme) {
-            /** @var Theme $theme */
-            $theme = $this->getDefaultTheme();
-            // TODO: if not find default theme must be throw exception
+        if (! $theme = $this->getTheme($identifier)) {
+            return $theme;
         }
 
-        return $theme;
+        return $this->getDefaultTheme();
     }
 
     /**

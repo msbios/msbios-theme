@@ -89,4 +89,13 @@ class Theme extends AbstractObject
     {
         return $this->getData('widget_manager');
     }
+
+    /**
+     * @param array $options
+     * @return Theme
+     */
+    public static function factory(array $options)
+    {
+        return new self($options);
+    }
 }

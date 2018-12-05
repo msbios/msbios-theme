@@ -72,17 +72,6 @@ return [
         ],
     ],
 
-    'view_manager' => [
-        'template_map' => [
-            // 'layout/layout' => __DIR__ . '/../../themes/default/view/layout/layout.phtml',
-            // 'error/404' => __DIR__ . '/../../themes/default/view/error/404.phtml',
-            // 'error/index' => __DIR__ . '/../../themes/default/view/error/index.phtml',
-        ],
-        'template_path_stack' => [
-            // __DIR__ . '/../../themes/default/view',
-        ],
-    ],
-
     \MSBios\Assetic\Module::class => [
         'paths' => [
             __DIR__ . '/../../themes/default/public',

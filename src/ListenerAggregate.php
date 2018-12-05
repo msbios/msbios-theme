@@ -11,7 +11,9 @@ use Zend\EventManager\EventInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Mvc\MvcEvent;
+use Zend\Router\RouteMatch;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Model\ModelInterface;
 use Zend\View\Resolver\AggregateResolver;
 use Zend\View\Resolver\TemplateMapResolver;
 use Zend\View\Resolver\TemplatePathStack;
@@ -22,9 +24,13 @@ use Zend\View\Resolver\TemplatePathStack;
  */
 class ListenerAggregate extends AbstractListenerAggregate
 {
-    /** @var ThemeManagerInterface */
-    protected $themeManager;
 
+    /** @const IDENTIFIER */
+    const IDENTIFIER = 'layout_identifier';
+
+    // /** @var ThemeManagerInterface */
+    // protected $themeManager;
+    //
     // /**
     //  * ListenerAggregate constructor.
     //  * @param ThemeManagerInterface $themeManager
@@ -42,8 +48,17 @@ class ListenerAggregate extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
+        // $this->listeners[] = $events
+        //     ->attach(MvcEvent::EVENT_BOOTSTRAP, [$this, 'onBootstrap'], $priority);
+
         $this->listeners[] = $events
             ->attach(MvcEvent::EVENT_RENDER, [$this, 'onRender'], $priority);
+        $this->listeners[] = $events
+            ->attach(MvcEvent::EVENT_RENDER_ERROR, [$this, 'onRender'], $priority);
+        $this->listeners[] = $events
+            ->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch'], $priority);
+        $this->listeners[] = $events
+            ->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onDispatch'], $priority);
     }
 
     /**
@@ -56,7 +71,7 @@ class ListenerAggregate extends AbstractListenerAggregate
             ->getServiceManager();
 
         /** @var Theme $theme */
-        if (! $theme = $this->themeManager->current()) {
+        if (! $theme = $serviceManager->get(ThemeManager::class)->current()) {
             return;
         }
 
@@ -103,7 +118,7 @@ class ListenerAggregate extends AbstractListenerAggregate
         }
 
         if ($widgetManager = $theme->getWidgetManager()) {
-            $this->injectWidgetManaget($widgetManager, $serviceManager);
+            $this->injectWidgetManager($widgetManager, $serviceManager);
         }
 
         $viewResolver->attach($themeResolver, 100);
@@ -122,7 +137,8 @@ class ListenerAggregate extends AbstractListenerAggregate
      * @param $templateTranslations
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectTranslationFilePatterns($templateTranslations, ServiceLocatorInterface $serviceManager) {
+    protected function injectTranslationFilePatterns($templateTranslations, ServiceLocatorInterface $serviceManager)
+    {
 
         /** @var array $pattern */
         foreach ($templateTranslations as $pattern) {
@@ -150,7 +166,7 @@ class ListenerAggregate extends AbstractListenerAggregate
      * @param $widgetManager
      * @param ServiceLocatorInterface $serviceManager
      */
-    protected function injectWidgetManaget($widgetManager, ServiceLocatorInterface $serviceManager)
+    protected function injectWidgetManager($widgetManager, ServiceLocatorInterface $serviceManager)
     {
         /** @var array $templatePathStack */
         if ($templatePathStack = $widgetManager['template_path_stack']) {
@@ -162,6 +178,31 @@ class ListenerAggregate extends AbstractListenerAggregate
         if ($templateMap = $widgetManager['template_map']) {
             $serviceManager->get('WidgetTemplateMapResolver')
                 ->merge($templateMap);
+        }
+    }
+
+    /**
+     * @param EventInterface $event
+     */
+    public function onDispatch(EventInterface $event)
+    {
+        /** @var RouteMatch $routeMatch */
+        $routeMatch = $event->getRouteMatch();
+
+        if (! $routeMatch instanceof RouteMatch) {
+            return;
+        }
+
+        /** @var string $identifier */
+        if ($identifier = $routeMatch->getParam(self::IDENTIFIER)) {
+
+            /** @var ModelInterface $viewModel */
+            $viewModel = $event->getViewModel();
+            if (! $viewModel instanceof ModelInterface) {
+                return;
+            }
+
+            $viewModel->setTemplate("layout/{$identifier}");
         }
     }
 }
