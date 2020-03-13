@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+
+  # php-fpm
+  php-fpm:
+    build:
+      context: .
+      target: dev
+      dockerfile: docker/php-fpm/Dockerfile
+      args:
+        APP_ENV: dev
+    volumes:
+      - .:/var/www/html:rw
+      - ~/.composer:/root/.composer/cache:ro
+
+  # nginx
+  nginx:
+    build:
+      context: .
+      target: dev
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        APP_ENV: dev
+    volumes:
+      - .:/var/www/html:rw
+    ports:
+      - 3107:80
+    depends_on:
+      - php-fpm
